@@ -9,6 +9,10 @@ const colors = {
   black: "#000000",
 };
 
+const contactEmail = "ForwardProgressHQ@gmail.com";
+const twitterHandle = "@HCRallyPoint";
+const twitterUrl = "https://x.com/HCRallyPoint";
+
 const articles = [
   {
     id: 1,
@@ -282,9 +286,13 @@ const styles = {
     textAlign: "center",
     fontWeight: 900,
     color: colors.black,
+    lineHeight: 1.8,
   },
 
-  "@media": {},
+  footerLink: {
+    color: colors.black,
+    textDecoration: "none",
+  },
 };
 
 function Brand() {
@@ -296,6 +304,27 @@ function Brand() {
         style={styles.logoImage}
       />
     </a>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={styles.footer}>
+      © 2026 The Home Crowd Rally Point. All rights reserved.
+      <br />
+      <a href={`mailto:${contactEmail}`} style={styles.footerLink}>
+        {contactEmail}
+      </a>
+      {" · "}
+      <a
+        href={twitterUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={styles.footerLink}
+      >
+        {twitterHandle}
+      </a>
+    </footer>
   );
 }
 
@@ -373,9 +402,7 @@ function ArticlePage({ article, onBack }) {
         </article>
       </main>
 
-      <footer style={styles.footer}>
-        © 2026 The Home Crowd Rally Point. All rights reserved.
-      </footer>
+      <Footer />
     </div>
   );
 }
@@ -425,8 +452,17 @@ export default function App() {
               About
             </a>
 
-            <a style={styles.navLink} href="mailto:youremail@example.com">
+            <a style={styles.navLink} href={`mailto:${contactEmail}`}>
               Contact
+            </a>
+
+            <a
+              style={styles.navLink}
+              href={twitterUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {twitterHandle}
             </a>
           </nav>
         </div>
@@ -504,9 +540,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer style={styles.footer}>
-        © 2026 The Home Crowd Rally Point. All rights reserved.
-      </footer>
+      <Footer />
     </div>
   );
 }
