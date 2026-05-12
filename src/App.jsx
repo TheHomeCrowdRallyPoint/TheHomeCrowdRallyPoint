@@ -186,6 +186,15 @@ const styles = {
     boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
   },
 
+  xFeedFrame: {
+    marginTop: "18px",
+    border: `4px solid ${colors.silver}`,
+    borderRadius: "18px",
+    padding: "10px",
+    background: "#f8fbff",
+    overflow: "hidden",
+  },
+
   eyebrow: {
     display: "inline-block",
     fontSize: "13px",
@@ -507,6 +516,104 @@ function ArticleCard({ article, isMobile, openArticle }) {
   );
 }
 
+function XFeedCard({ isMobile }) {
+  useEffect(() => {
+    if (
+      typeof window !== "undefined" &&
+      window.twttr &&
+      window.twttr.widgets
+    ) {
+      window.twttr.widgets.load();
+    }
+  }, []);
+
+  return (
+    <aside
+      style={{
+        ...styles.sideCard,
+        padding: isMobile ? "18px" : "24px",
+        minHeight: isMobile ? "auto" : "520px",
+        borderWidth: isMobile ? "4px" : "5px",
+        justifyContent: "flex-start",
+      }}
+    >
+      <span style={styles.eyebrow}>Live from X</span>
+
+      <h2
+        style={{
+          ...styles.h2,
+          fontSize: isMobile ? "28px" : "32px",
+        }}
+      >
+        @HCRallyPoint
+      </h2>
+
+      <p
+        style={{
+          fontSize: isMobile ? "16px" : "17px",
+          lineHeight: 1.6,
+          fontWeight: 700,
+        }}
+      >
+        Titans stories. Real conversation. Fan-first coverage.
+      </p>
+
+      <div
+        style={{
+          ...styles.xFeedFrame,
+          padding: isMobile ? "8px" : "10px",
+        }}
+      >
+        <a
+          className="twitter-timeline"
+          data-height={isMobile ? "500" : "620"}
+          data-theme="light"
+          data-chrome="nofooter"
+          href="https://twitter.com/HCRallyPoint"
+        >
+          Posts by @HCRallyPoint
+        </a>
+      </div>
+    </aside>
+  );
+}
+
+function AboutSiteSection({ isMobile }) {
+  return (
+    <section
+      style={{
+        ...styles.articlesSection,
+        padding: isMobile ? "24px" : "34px",
+        borderWidth: isMobile ? "4px" : "5px",
+      }}
+    >
+      <span style={styles.eyebrow}>About the Site</span>
+
+      <h2 style={styles.h2}>Built for Titans Fans</h2>
+
+      <p
+        style={{
+          ...styles.dek,
+          fontSize: isMobile ? "18px" : "20px",
+        }}
+      >
+        The Home Crowd Rally Point is built for Titans fans who want real
+        football stories and fan-first conversation.
+      </p>
+
+      <div style={styles.focusRow}>
+        <span style={styles.focusChip}>Tennessee Titans</span>
+        <span style={styles.focusChip}>NFL Storylines</span>
+        <span style={styles.focusChip}>Fan Analysis</span>
+      </div>
+
+      <p style={styles.smallNote}>
+        Titans stories. Real conversation. Fan-first coverage.
+      </p>
+    </section>
+  );
+}
+
 function ArticlePage({ article, isMobile, setPage, setActiveArticle }) {
   function backToHome() {
     setActiveArticle(null);
@@ -674,47 +781,7 @@ function HomePage({ isMobile, openArticle, setPage }) {
             </button>
           </div>
 
-          <aside
-            style={{
-              ...styles.sideCard,
-              padding: isMobile ? "24px" : "32px",
-              minHeight: isMobile ? "auto" : "360px",
-              borderWidth: isMobile ? "4px" : "5px",
-            }}
-          >
-            <div>
-              <span style={styles.eyebrow}>About the Site</span>
-
-              <h2
-                style={{
-                  ...styles.h2,
-                  fontSize: isMobile ? "30px" : "34px",
-                }}
-              >
-                Built for Titans Fans
-              </h2>
-
-              <p
-                style={{
-                  fontSize: isMobile ? "17px" : "18px",
-                  lineHeight: 1.7,
-                }}
-              >
-                The Home Crowd Rally Point is built for Titans fans who want
-                real football stories and fan-first conversation.
-              </p>
-
-              <div style={styles.focusRow}>
-                <span style={styles.focusChip}>Tennessee Titans</span>
-                <span style={styles.focusChip}>NFL Storylines</span>
-                <span style={styles.focusChip}>Fan Analysis</span>
-              </div>
-
-              <p style={styles.smallNote}>
-                Titans stories. Real conversation. Fan-first coverage.
-              </p>
-            </div>
-          </aside>
+          <XFeedCard isMobile={isMobile} />
         </section>
 
         <section
@@ -759,6 +826,8 @@ function HomePage({ isMobile, openArticle, setPage }) {
             View All Articles
           </button>
         </section>
+
+        <AboutSiteSection isMobile={isMobile} />
       </div>
     </main>
   );
