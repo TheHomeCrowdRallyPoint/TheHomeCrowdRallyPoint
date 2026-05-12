@@ -213,11 +213,25 @@ const styles = {
     border: `5px solid ${colors.silver}`,
     borderRadius: "24px",
     padding: "32px",
-    background: colors.white,
+    background: `linear-gradient(135deg, ${colors.white} 0%, #f8fbff 100%)`,
     color: colors.black,
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-between",
+    minHeight: "360px",
+    boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
+  },
+
+  eyebrow: {
+    display: "inline-block",
+    fontSize: "13px",
+    fontWeight: 900,
+    letterSpacing: "1.5px",
+    textTransform: "uppercase",
+    color: colors.black,
+    borderLeft: `6px solid ${colors.red}`,
+    paddingLeft: "12px",
+    marginBottom: "18px",
   },
 
   h2: {
@@ -227,10 +241,29 @@ const styles = {
     color: colors.black,
   },
 
-  focusBox: {
+  focusRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
     marginTop: "18px",
-    borderLeft: `6px solid ${colors.red}`,
-    paddingLeft: "16px",
+  },
+
+  focusChip: {
+    border: `3px solid ${colors.blue}`,
+    borderRadius: "999px",
+    padding: "9px 13px",
+    fontWeight: 900,
+    background: colors.white,
+    color: colors.black,
+  },
+
+  smallNote: {
+    marginTop: "22px",
+    paddingTop: "18px",
+    borderTop: `3px solid ${colors.silver}`,
+    fontSize: "15px",
+    lineHeight: 1.6,
+    fontWeight: 700,
   },
 
   articleShell: {
@@ -250,6 +283,8 @@ const styles = {
     fontWeight: 900,
     color: colors.black,
   },
+
+  "@media": {},
 };
 
 function Brand() {
@@ -425,20 +460,44 @@ export default function App() {
             </div>
 
             <aside style={styles.sideCard} id="about">
-              <h2 style={{ ...styles.h2, fontSize: "32px" }}>
-                The Home Crowd Rally Point
-              </h2>
+              <div>
+                <span style={styles.eyebrow}>About the Site</span>
 
-              <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
-                Titans-focused football coverage built around storylines,
-                rebuild talk, roster direction, and fan-first analysis.
-              </p>
+                <h2 style={{ ...styles.h2, fontSize: "34px" }}>
+                  Built for Titans Fans
+                </h2>
 
-              <div style={styles.focusBox}>
-                <p style={{ fontWeight: 900, marginBottom: "6px" }}>
-                  Primary Focus
+                <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
+                  The Home Crowd Rally Point is a fan-first football site focused
+                  on Titans storylines, roster direction, rebuild talk, and
+                  national NFL conversations that matter to Tennessee.
                 </p>
-                <p style={{ marginTop: 0 }}>Tennessee Titans + NFL</p>
+
+                <div style={styles.focusRow}>
+                  <span style={styles.focusChip}>Tennessee Titans</span>
+                  <span style={styles.focusChip}>NFL Storylines</span>
+                  <span style={styles.focusChip}>Fan Analysis</span>
+                </div>
+              </div>
+
+              <div>
+                <p style={styles.smallNote}>
+                  Coverage with a sports-media feel, written for readers who care
+                  about where the franchise is headed.
+                </p>
+
+                <button
+                  style={{
+                    ...styles.button,
+                    marginTop: "18px",
+                  }}
+                  onClick={() => {
+                    window.location.hash = featured.slug;
+                    setActiveArticle(featured);
+                  }}
+                >
+                  Read the Featured Article
+                </button>
               </div>
             </aside>
           </section>
