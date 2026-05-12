@@ -74,7 +74,7 @@ const articles = [
       "4. Home vs Washington Commanders",
       "5. Away vs Dallas Cowboys",
       "The Titans do not need primetime games built only around nostalgia or big-market opponents. They need games with stories people can follow.",
-      "Houston brings the rivalry and the Oilers-color controversy. New York brings Brian Daboll, Wan’Dale Robinson, and the Cam Ward-Jaxson Dart quarterback comparison. Las Vegas brings two rebuilds and Fernando Mendoza. Washington brings Jayden Daniels as the progress test. Dallas brings the biggest national stage possible."
+      "Houston brings the rivalry and the Oilers-color controversy. New York brings Brian Daboll, Wan’Dale Robinson, and the Cam Ward-Jaxson Dart quarterback comparison. Las Vegas brings two rebuilds and Fernando Mendoza. Washington brings Jayden Daniels as the progress test. Dallas brings the biggest national stage possible.",
     ],
   },
 ];
@@ -103,6 +103,7 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     gap: "20px",
+    flexWrap: "wrap",
   },
   brand: {
     display: "flex",
@@ -140,6 +141,7 @@ const styles = {
     display: "flex",
     gap: "22px",
     fontWeight: 900,
+    flexWrap: "wrap",
   },
   navLink: {
     color: colors.black,
@@ -150,7 +152,7 @@ const styles = {
   },
   heroGrid: {
     display: "grid",
-    gridTemplateColumns: "1.3fr 0.7fr",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "24px",
   },
   hero: {
@@ -173,7 +175,7 @@ const styles = {
   },
   h1: {
     margin: 0,
-    fontSize: "52px",
+    fontSize: "clamp(36px, 6vw, 52px)",
     lineHeight: 1,
     fontWeight: 900,
     color: colors.black,
@@ -215,7 +217,7 @@ const styles = {
   },
   h2: {
     margin: 0,
-    fontSize: "36px",
+    fontSize: "clamp(28px, 5vw, 36px)",
     fontWeight: 900,
     color: colors.black,
   },
@@ -281,32 +283,13 @@ const styles = {
   cardBody: {
     padding: "24px",
   },
-  modalOverlay: {
-    position: "fixed",
-    inset: 0,
-    background: "rgba(0,0,0,0.75)",
-    zIndex: 99,
-    padding: "20px",
-    overflowY: "auto",
-  },
-  modal: {
-    maxWidth: "820px",
-    margin: "20px auto",
-    background: colors.white,
+  articleShell: {
+    maxWidth: "850px",
+    margin: "0 auto",
     border: `5px solid ${colors.blue}`,
     borderRadius: "24px",
     padding: "34px",
-    color: colors.black,
-  },
-  close: {
-    float: "right",
-    border: `3px solid ${colors.red}`,
     background: colors.white,
-    borderRadius: "999px",
-    width: "40px",
-    height: "40px",
-    fontWeight: 900,
-    cursor: "pointer",
     color: colors.black,
   },
   footer: {
@@ -330,52 +313,72 @@ function Brand() {
   );
 }
 
-function ArticleModal({ article, onClose }) {
-  if (!article) return null;
-
+function ArticlePage({ article, onBack }) {
   return (
-    <div style={styles.modalOverlay}>
-      <article style={styles.modal}>
-        <button style={styles.close} onClick={onClose}>
-          X
-        </button>
-
-        <p style={{ fontWeight: 900 }}>{article.category}</p>
-
-        <h1 style={{ ...styles.h1, fontSize: "42px" }}>{article.title}</h1>
-
-        <p style={styles.dek}>{article.dek}</p>
-
-        <p style={{ fontWeight: 900 }}>
-          By {article.author} · {article.date} · {article.readTime}
-        </p>
-
-        <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
-          {article.body.map((paragraph, index) => {
-            const isGameSubtitle =
-              paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
-              paragraph.startsWith("2. Away Game vs New York Giants") ||
-              paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
-              paragraph.startsWith("4. Home Game vs Washington Commanders") ||
-              paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
-              paragraph.startsWith("Final Ranking");
-
-            return (
-              <p
-                key={index}
-                style={{
-                  fontWeight: isGameSubtitle ? 900 : 400,
-                  fontSize: isGameSubtitle ? "26px" : "19px",
-                  marginTop: isGameSubtitle ? "34px" : "16px",
-                  color: colors.black,
-                }}
-              >
-                {paragraph}
-              </p>
-            );
-          })}
+    <div style={styles.page}>
+      <header style={styles.header}>
+        <div style={{ ...styles.container, ...styles.headerInner }}>
+          <Brand />
+          <button
+            style={{
+              ...styles.button,
+              marginTop: 0,
+              background: colors.white,
+            }}
+            onClick={onBack}
+          >
+            Back to Home
+          </button>
         </div>
-      </article>
+      </header>
+
+      <main style={styles.main}>
+        <article style={styles.articleShell}>
+          <p style={{ fontWeight: 900 }}>{article.category}</p>
+
+          <h1 style={{ ...styles.h1, fontSize: "clamp(36px, 6vw, 46px)" }}>
+            {article.title}
+          </h1>
+
+          <p style={styles.dek}>{article.dek}</p>
+
+          <p style={{ fontWeight: 900 }}>
+            By {article.author} · {article.date} · {article.readTime}
+          </p>
+
+          <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
+            {article.body.map((paragraph, index) => {
+              const isGameSubtitle =
+                paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
+                paragraph.startsWith("2. Away Game vs New York Giants") ||
+                paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
+                paragraph.startsWith("4. Home Game vs Washington Commanders") ||
+                paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
+                paragraph.startsWith("Final Ranking");
+
+              const isWhyLine = paragraph.startsWith("Why:");
+
+              return (
+                <p
+                  key={index}
+                  style={{
+                    fontWeight: isGameSubtitle || isWhyLine ? 900 : 400,
+                    fontSize: isGameSubtitle ? "26px" : "19px",
+                    marginTop: isGameSubtitle ? "34px" : "16px",
+                    color: colors.black,
+                  }}
+                >
+                  {paragraph}
+                </p>
+              );
+            })}
+          </div>
+        </article>
+      </main>
+
+      <footer style={styles.footer}>
+        © 2026 The Home Crowd Rally Point. All rights reserved.
+      </footer>
     </div>
   );
 }
@@ -399,17 +402,30 @@ export default function App() {
   }, [query, category]);
 
   const featured = articles[0];
+
   useEffect(() => {
-  const slugFromUrl = window.location.hash.replace("#", "");
+    const slugFromUrl = window.location.hash.replace("#", "");
 
-  if (slugFromUrl) {
-    const matchedArticle = articles.find((article) => article.slug === slugFromUrl);
+    if (slugFromUrl) {
+      const matchedArticle = articles.find((article) => article.slug === slugFromUrl);
 
-    if (matchedArticle) {
-      setActiveArticle(matchedArticle);
+      if (matchedArticle) {
+        setActiveArticle(matchedArticle);
+      }
     }
+  }, []);
+
+  if (activeArticle) {
+    return (
+      <ArticlePage
+        article={activeArticle}
+        onBack={() => {
+          setActiveArticle(null);
+          window.history.pushState("", document.title, window.location.pathname);
+        }}
+      />
+    );
   }
-}, []);
 
   return (
     <div style={styles.page}>
@@ -417,9 +433,15 @@ export default function App() {
         <div style={{ ...styles.container, ...styles.headerInner }}>
           <Brand />
           <nav style={styles.nav}>
-            <a style={styles.navLink} href="#latest">Latest</a>
-            <a style={styles.navLink} href="#about">About</a>
-            <a style={styles.navLink} href="mailto:youremail@example.com">Contact</a>
+            <a style={styles.navLink} href="#latest">
+              Latest
+            </a>
+            <a style={styles.navLink} href="#about">
+              About
+            </a>
+            <a style={styles.navLink} href="mailto:youremail@example.com">
+              Contact
+            </a>
           </nav>
         </div>
       </header>
@@ -431,33 +453,36 @@ export default function App() {
               <span style={styles.badge}>Featured Article</span>
               <h1 style={styles.h1}>{featured.title}</h1>
               <p style={styles.dek}>{featured.dek}</p>
+
               <div style={styles.meta}>
                 <span>{featured.category}</span>
                 <span>{featured.date}</span>
                 <span>{featured.readTime}</span>
               </div>
-             <button
-  style={styles.button}
-  onClick={() => {
-    window.location.hash = featured.slug;
-    setActiveArticle(featured);
-  }}
->
-  Read Article
-</button>
+
+              <button
+                style={styles.button}
+                onClick={() => {
+                  window.location.hash = featured.slug;
+                  setActiveArticle(featured);
+                }}
+              >
+                Read Article
+              </button>
             </div>
 
             <aside style={styles.sideCard} id="about">
               <h2 style={{ ...styles.h2, fontSize: "30px" }}>
                 The Home Crowd Rally Point
               </h2>
+
               <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
                 A fan-first sports media home for Titans coverage, NFL storylines,
                 roster-building thoughts, and conversational analysis.
               </p>
+
               <p style={{ fontWeight: 900 }}>Primary Focus</p>
               <p>Tennessee Titans + NFL</p>
-          
             </aside>
           </section>
 
@@ -465,8 +490,11 @@ export default function App() {
             <div style={styles.searchRow}>
               <div>
                 <p style={{ fontWeight: 900 }}>LATEST ARTICLES</p>
-                <h2 style={styles.h2}>Read the latest from The Home Crowd Rally Point</h2>
+                <h2 style={styles.h2}>
+                  Read the latest from The Home Crowd Rally Point
+                </h2>
               </div>
+
               <input
                 style={styles.input}
                 value={query}
@@ -494,21 +522,33 @@ export default function App() {
               {filteredArticles.map((article) => (
                 <article key={article.id} style={styles.card}>
                   <div style={styles.cardTop}>{article.imageLabel}</div>
+
                   <div style={styles.cardBody}>
-                    <p style={{ fontWeight: 900 }}>{article.category} · {article.readTime}</p>
-                    <h3 style={{ fontSize: "26px", fontWeight: 900, color: colors.black }}>
+                    <p style={{ fontWeight: 900 }}>
+                      {article.category} · {article.readTime}
+                    </p>
+
+                    <h3
+                      style={{
+                        fontSize: "26px",
+                        fontWeight: 900,
+                        color: colors.black,
+                      }}
+                    >
                       {article.title}
                     </h3>
+
                     <p style={{ lineHeight: 1.7 }}>{article.dek}</p>
+
                     <button
-  style={styles.button}
-  onClick={() => {
-    window.location.hash = article.slug;
-    setActiveArticle(article);
-  }}
->
-  Read More
-</button>
+                      style={styles.button}
+                      onClick={() => {
+                        window.location.hash = article.slug;
+                        setActiveArticle(article);
+                      }}
+                    >
+                      Read More
+                    </button>
                   </div>
                 </article>
               ))}
@@ -520,14 +560,6 @@ export default function App() {
       <footer style={styles.footer}>
         © 2026 The Home Crowd Rally Point. All rights reserved.
       </footer>
-
-      <ArticleModal
-  article={activeArticle}
-  onClose={() => {
-    setActiveArticle(null);
-    window.history.pushState("", document.title, window.location.pathname);
-  }}
-/>
     </div>
   );
 }
