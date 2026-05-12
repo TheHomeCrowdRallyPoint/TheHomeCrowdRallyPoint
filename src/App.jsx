@@ -338,37 +338,41 @@ function ArticleModal({ article, onClose }) {
         <button style={styles.close} onClick={onClose}>
           X
         </button>
+
         <p style={{ fontWeight: 900 }}>{article.category}</p>
+
         <h1 style={{ ...styles.h1, fontSize: "42px" }}>{article.title}</h1>
+
         <p style={styles.dek}>{article.dek}</p>
+
         <p style={{ fontWeight: 900 }}>
           By {article.author} · {article.date} · {article.readTime}
         </p>
-        <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
-  {article.body.map((paragraph, index) => {
-    const isGameSubtitle =
-      paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
-      paragraph.startsWith("2. Away Game vs New York Giants") ||
-      paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
-      paragraph.startsWith("4. Home Game vs Washington Commanders") ||
-      paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
-      paragraph.startsWith("Final Ranking");
 
-    return (
-      <p
-        key={index}
-        style={{
-          fontWeight: isGameSubtitle ? 900 : 400,
-          fontSize: isGameSubtitle ? "26px" : "19px",
-          marginTop: isGameSubtitle ? "34px" : "16px",
-          color: colors.black,
-        }}
-      >
-        {paragraph}
-      </p>
-    );
-  })}
-</div>
+        <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
+          {article.body.map((paragraph, index) => {
+            const isGameSubtitle =
+              paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
+              paragraph.startsWith("2. Away Game vs New York Giants") ||
+              paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
+              paragraph.startsWith("4. Home Game vs Washington Commanders") ||
+              paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
+              paragraph.startsWith("Final Ranking");
+
+            return (
+              <p
+                key={index}
+                style={{
+                  fontWeight: isGameSubtitle ? 900 : 400,
+                  fontSize: isGameSubtitle ? "26px" : "19px",
+                  marginTop: isGameSubtitle ? "34px" : "16px",
+                  color: colors.black,
+                }}
+              >
+                {paragraph}
+              </p>
+            );
+          })}
         </div>
       </article>
     </div>
