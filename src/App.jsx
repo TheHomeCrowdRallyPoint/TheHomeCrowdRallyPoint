@@ -81,6 +81,87 @@ const articles = [
       "Houston brings the rivalry and the Oilers-color controversy. New York brings Brian Daboll, Wan’Dale Robinson, and the Cam Ward-Jaxson Dart quarterback comparison. Las Vegas brings two rebuilds and Fernando Mendoza. Washington brings Jayden Daniels as the progress test. Dallas brings the biggest national stage possible.",
     ],
   },
+  {
+    id: 2,
+    slug: "titans-need-to-be-interesting-offense-edition",
+    title:
+      "The Titans Don’t Need to Be Great Yet; They Need to Be Interesting: Offense Edition",
+    dek: "The Titans offense does not need to be perfect right away, but it does need to give fans direction, growth, energy, and something worth watching.",
+    category: "Titans",
+    author: "Jeremy Neasley",
+    date: "May 12, 2026",
+    readTime: "7 min read",
+    imageLabel: "OFFENSE EDITION",
+    body: [
+      "The Titans do not need the offense to be perfect right away.",
+      "That is not realistic. Not with a young quarterback. Not with new pieces trying to fit together. Not with an offensive identity still being built. But the offense does need to become interesting.",
+      "That is the next step.",
+      "Interesting does not mean every drive ends in points. It does not mean Cam Ward has to look like a finished franchise quarterback immediately. It does not mean the Titans suddenly need to become one of the most explosive teams in football.",
+      "It means there must be something worth watching. It means fans need to see direction. Growth. Energy. A reason to believe the offense is becoming something instead of just surviving another season.",
+      "For Tennessee, that starts with Cam Ward.",
+
+      "Cam Ward Gives the Offense a Reason to Matter",
+      "When a team has a young quarterback, everything changes.",
+      "The entire offense becomes part of his evaluation. Every route, every protection, every third down, every red zone trip, every mistake, and every flash become part of the bigger question.",
+      "Is this the guy?",
+      "That is what makes Cam Ward the center of the Titans’ offensive story. Ward’s first season gave Tennessee both reasons to believe and reasons to keep building. The record was ugly at 3-14, and the offense clearly was not where it needed to be. But Ward still started all 17 games, threw for 3,169 yards, completed 59.8% of his passes, and finished with 15 touchdowns to 7 interceptions.",
+      "That matters because even in a rough year, he did not completely fall apart. He protected the football better than a lot of young quarterbacks do in bad situations, and he showed enough to keep the conversation moving forward.",
+      "But the next step has to be about more than survival.",
+      "Ward was sacked 55 times, which tells part of the story. The structure has to be better. The answers around him have to be better. Brian Daboll has to help make the offense easier for him to operate, not by hiding him, but by giving him a real plan.",
+      "Ward does not have to be great yet. But he does have to make the offense feel like it has a future.",
+      "Can he command the huddle? Can he handle pressure better? Can he turn more drives into touchdowns? Can he create without forcing the issue? Can he push the ball while still protecting it? Can he turn talent around him into real production?",
+      "That is what makes a young quarterback interesting. Even when the results are uneven, there is value in seeing growth. There is value in watching him answer questions. There is value in knowing that every week might show you something new about where the franchise is headed.",
+      "The Titans need that.",
+
+      "Carnell Tate Has to Prove He Can Be the Guy",
+      "Carnell Tate enters Tennessee with real talent, but also with a real question.",
+      "At Ohio State, he was not the headline receiver. Jeremiah Smith was the main name in that room, and Tate had to play as the No. 2 option in one of the most talented wide receiver groups in college football. Now the question changes.",
+      "Can Tate become a No. 1 type of receiver for the Titans?",
+      "That does not mean he has to be a star immediately. It does not mean he has to dominate every matchup as a rookie. But Tennessee needs to find out whether he can grow into the kind of receiver Cam Ward can rely on as the offense develops.",
+      "A rebuilding team needs players who can outgrow their draft slot, their college role, or the label people put on them coming into the league. Tate has that opportunity.",
+      "He has to prove he can win when more attention is on him. He has to show he can handle tougher coverage, make contested catches, separate well enough to keep the offense on schedule, and become more than just a complementary piece.",
+      "That is what makes him interesting.",
+      "If Ward and Tate start building real chemistry, the Titans suddenly have one of the most important things a young offense can have: a quarterback and receiver connection that feels like part of the future. Tate does not have to prove everything right away. But he does have to prove he can be more than somebody’s No. 2.",
+
+      "Nicholas Singleton Has to Push the Room",
+      "Nicholas Singleton being drafted in the fifth round does not mean he should be treated like an afterthought.",
+      "That is what makes him interesting.",
+      "The Titans already have Tony Pollard and Tyjae Spears ahead of him, so Singleton does not walk into Tennessee with anything handed to him. He has to earn touches. He has to force the coaching staff to notice him. He has to make the running back room more competitive.",
+      "That is exactly what the Titans need.",
+      "Singleton has the talent to push Spears first. If he does that, the next question becomes whether he can eventually push Pollard by the end of the year. That does not mean the Titans need to rush him into a featured role. It means he has to make the team consider it.",
+      "For a rebuilding offense, that kind of pressure is healthy.",
+      "A young quarterback like Cam Ward needs help around him, and a running back who can bring energy, explosiveness, and pass-catching ability gives the offense another way to function. If Singleton can turn limited touches into real production, he gives Tennessee a reason to expand his role.",
+      "The Titans do not need him to take over immediately. They need him to push the two backs ahead of him and make the offense more difficult to ignore.",
+
+      "Gunnar Helm and Wan’Dale Robinson Can Give Cam Ward Reliable Answers",
+      "Every young quarterback needs players who can make the game feel easier.",
+      "For Cam Ward, Gunnar Helm and Wan’Dale Robinson can become those kinds of players. Helm is no longer just a young tight end trying to find a role. After his rookie year with the Titans, he enters this season as TE1, and that changes the expectation. He has to become a reliable part of the offense, especially in the areas where young quarterbacks need help most.",
+      "Third downs. Red zone snaps. Quick throws. Middle-of-the-field targets. Safety-valve situations. Plays where the first read is covered and Ward needs someone who understands where to be. That is where Helm matters.",
+      "Wan’Dale Robinson brings a similar kind of value from the receiver position. He comes to Tennessee from the Giants, just like Brian Daboll, and that connection matters. Robinson already has familiarity with Daboll, and that should give him a chance to settle into the offense quickly.",
+      "Not every target has to be a deep shot. Not every play has to be explosive. Sometimes a young quarterback needs dependable players who can uncover quickly, work underneath, find space, and help keep the offense on schedule. That is where Helm and Robinson can operate in a similar way.",
+      "Helm can work as the tight end who gives Ward structure. Robinson can work as the slot receiver who gives Ward quick answers. Together, they can help Daboll build an offense that does not ask Ward to make the hardest throw on every snap. That is how an offense starts to find rhythm.",
+      "If Helm becomes a dependable TE1 and Robinson becomes a trusted underneath option, the Titans gain two players who can help Ward stay comfortable while the bigger pieces develop around him.",
+      "That may not always create the flashiest highlights.",
+      "But for a young quarterback, it can be the difference between chaos and control.",
+
+      "The Offense Needs an Identity Fans Can Recognize",
+      "The Titans do not need to be elite yet. But they do need an identity.",
+      "Are they physical? Are they aggressive? Are they explosive? Are they balanced? Are they creative? Are they building around Ward’s strengths? Are they giving their young talent a chance to grow?",
+      "That is what fans will be watching.",
+      "Nobody should expect a finished product overnight. But there has to be something recognizable about the way Tennessee plays offense. If the Titans are going to look different, they need to feel different too.",
+      "The new era cannot just be about uniforms and colors. The football has to match the energy.",
+
+      "Final Thought",
+      "The Titans offense does not need to be great yet.",
+      "It needs to become interesting.",
+      "That starts with Brian Daboll giving the offense real direction and Cam Ward showing that his rookie season was a foundation, not a ceiling. Ward survived a rough year, protected the football better than the record suggested, and now needs the structure, play-calling, and supporting cast to help him take the next step.",
+      "Nicholas Singleton has to push the room. Even as a fifth-round pick, he has the talent to challenge Tyjae Spears first and possibly Tony Pollard by the end of the year. That kind of pressure is good for the offense.",
+      "Carnell Tate has to prove he can be more than the No. 2 option he was at Ohio State behind Jeremiah Smith. Tennessee needs to find out if he can become a real go-to receiver for Ward.",
+      "Gunnar Helm and Wan’Dale Robinson can help give Ward reliable answers. Helm enters the year as TE1, while Robinson brings familiarity with Daboll from New York. Together, they can help the offense stay on schedule, work the middle of the field, and give Ward options that do not require every throw to be difficult.",
+      "That is what this season should be about. Not perfection. Progress. Not instant greatness. Direction.",
+      "Before the Titans offense becomes dangerous, it has to become watchable. Before it becomes one of the league’s better units, it has to give fans something they can believe is being built the right way. That would be real progress.",
+    ],
+  },
 ];
 
 function useIsMobile() {
@@ -288,6 +369,49 @@ const styles = {
     fontWeight: 700,
   },
 
+  articlesSection: {
+    marginTop: "34px",
+    border: `5px solid ${colors.blue}`,
+    borderRadius: "24px",
+    padding: "34px",
+    background: colors.white,
+    color: colors.black,
+    boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
+  },
+
+  articleGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "22px",
+    marginTop: "24px",
+  },
+
+  articleCard: {
+    border: `4px solid ${colors.silver}`,
+    borderRadius: "22px",
+    overflow: "hidden",
+    background: colors.white,
+    color: colors.black,
+  },
+
+  articleCardTop: {
+    minHeight: "105px",
+    background: colors.blue,
+    borderBottom: `4px solid ${colors.red}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "16px",
+    fontSize: "22px",
+    fontWeight: 900,
+    color: colors.black,
+  },
+
+  articleCardBody: {
+    padding: "22px",
+  },
+
   aboutSection: {
     marginTop: "34px",
     border: `5px solid ${colors.navy}`,
@@ -406,6 +530,25 @@ function Footer() {
   );
 }
 
+function getIsSectionHeading(paragraph) {
+  return (
+    paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
+    paragraph.startsWith("2. Away Game vs New York Giants") ||
+    paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
+    paragraph.startsWith("4. Home Game vs Washington Commanders") ||
+    paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
+    paragraph.startsWith("Cam Ward Gives the Offense a Reason to Matter") ||
+    paragraph.startsWith("Carnell Tate Has to Prove He Can Be the Guy") ||
+    paragraph.startsWith("Nicholas Singleton Has to Push the Room") ||
+    paragraph.startsWith(
+      "Gunnar Helm and Wan’Dale Robinson Can Give Cam Ward Reliable Answers"
+    ) ||
+    paragraph.startsWith("The Offense Needs an Identity Fans Can Recognize") ||
+    paragraph.startsWith("Final Thought") ||
+    paragraph.startsWith("Final Ranking")
+  );
+}
+
 function ArticlePage({ article, onBack }) {
   const isMobile = useIsMobile();
 
@@ -480,29 +623,22 @@ function ArticlePage({ article, onBack }) {
             }}
           >
             {article.body.map((paragraph, index) => {
-              const isGameSubtitle =
-                paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
-                paragraph.startsWith("2. Away Game vs New York Giants") ||
-                paragraph.startsWith("3. Away Game vs Las Vegas Raiders") ||
-                paragraph.startsWith("4. Home Game vs Washington Commanders") ||
-                paragraph.startsWith("5. Away Game vs Dallas Cowboys") ||
-                paragraph.startsWith("Final Ranking");
-
+              const isSectionHeading = getIsSectionHeading(paragraph);
               const isWhyLine = paragraph.startsWith("Why:");
 
               return (
                 <p
                   key={index}
                   style={{
-                    fontWeight: isGameSubtitle || isWhyLine ? 900 : 400,
-                    fontSize: isGameSubtitle
+                    fontWeight: isSectionHeading || isWhyLine ? 900 : 400,
+                    fontSize: isSectionHeading
                       ? isMobile
                         ? "23px"
                         : "26px"
                       : isMobile
                       ? "18px"
                       : "19px",
-                    marginTop: isGameSubtitle ? "32px" : "16px",
+                    marginTop: isSectionHeading ? "32px" : "16px",
                     color: colors.black,
                   }}
                 >
@@ -532,7 +668,7 @@ function ArticlePage({ article, onBack }) {
 
 export default function App() {
   const [activeArticle, setActiveArticle] = useState(null);
-  const featured = articles[0];
+  const featured = articles[articles.length - 1];
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -584,6 +720,10 @@ export default function App() {
           >
             <a style={styles.navLink} href="/">
               Home
+            </a>
+
+            <a style={styles.navLink} href="#articles">
+              Articles
             </a>
 
             <a style={styles.navLink} href="#about-me">
@@ -728,6 +868,66 @@ export default function App() {
                 </button>
               </div>
             </aside>
+          </section>
+
+          <section
+            id="articles"
+            style={{
+              ...styles.articlesSection,
+              padding: isMobile ? "24px" : "34px",
+              borderWidth: isMobile ? "4px" : "5px",
+            }}
+          >
+            <span style={styles.eyebrow}>Latest Articles</span>
+
+            <h2 style={styles.h2}>Read the latest from The Home Crowd Rally Point</h2>
+
+            <div
+              style={{
+                ...styles.articleGrid,
+                gridTemplateColumns: isMobile
+                  ? "1fr"
+                  : styles.articleGrid.gridTemplateColumns,
+              }}
+            >
+              {[...articles].reverse().map((article) => (
+                <article key={article.id} style={styles.articleCard}>
+                  <div style={styles.articleCardTop}>{article.imageLabel}</div>
+
+                  <div style={styles.articleCardBody}>
+                    <p style={{ fontWeight: 900 }}>
+                      {article.category} · {article.readTime}
+                    </p>
+
+                    <h3
+                      style={{
+                        fontSize: isMobile ? "22px" : "25px",
+                        fontWeight: 900,
+                        color: colors.black,
+                        marginTop: "10px",
+                      }}
+                    >
+                      {article.title}
+                    </h3>
+
+                    <p style={{ lineHeight: 1.7 }}>{article.dek}</p>
+
+                    <button
+                      style={{
+                        ...styles.button,
+                        width: isMobile ? "100%" : "auto",
+                      }}
+                      onClick={() => {
+                        window.location.hash = article.slug;
+                        setActiveArticle(article);
+                      }}
+                    >
+                      Read Article
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
           </section>
 
           <section
