@@ -124,6 +124,20 @@ const styles = {
     color: colors.black,
     boxShadow: `inset 0 0 0 3px ${colors.white}`,
   },
+brandLink: {
+  display: "flex",
+  alignItems: "center",
+  color: colors.black,
+  textDecoration: "none",
+},
+
+logoImage: {
+  width: "260px",
+  maxWidth: "100%",
+  height: "auto",
+  objectFit: "contain",
+  display: "block",
+},
   siteTitle: {
     margin: 0,
     fontSize: "24px",
@@ -303,13 +317,13 @@ const styles = {
 
 function Brand() {
   return (
-    <div style={styles.brand}>
-      <div style={styles.brandMark}>HC</div>
-      <div>
-        <p style={styles.siteTitle}>The Home Crowd</p>
-        <p style={styles.siteSub}>RALLY POINT</p>
-      </div>
-    </div>
+    <a href="/" style={styles.brandLink}>
+      <img
+        src="/logo.png"
+        alt="The Home Crowd Rally Point logo"
+        style={styles.logoImage}
+      />
+    </a>
   );
 }
 
