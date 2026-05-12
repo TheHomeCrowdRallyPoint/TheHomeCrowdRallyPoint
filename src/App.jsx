@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const colors = {
   navy: "#0C2340",
@@ -12,6 +12,7 @@ const colors = {
 const articles = [
   {
     id: 1,
+    slug: "titans-5-best-primetime-opponents",
     title: "Titans 5 Best Primetime Opponents",
     dek: "The Titans’ 2026 schedule has several games that could make sense for national television, but the best primetime matchups are not just about brand names. They are about storylines.",
     category: "Titans",
@@ -398,6 +399,17 @@ export default function App() {
   }, [query, category]);
 
   const featured = articles[0];
+  useEffect(() => {
+  const slugFromUrl = window.location.hash.replace("#", "");
+
+  if (slugFromUrl) {
+    const matchedArticle = articles.find((article) => article.slug === slugFromUrl);
+
+    if (matchedArticle) {
+      setActiveArticle(matchedArticle);
+    }
+  }
+}, []);
 
   return (
     <div style={styles.page}>
@@ -424,9 +436,15 @@ export default function App() {
                 <span>{featured.date}</span>
                 <span>{featured.readTime}</span>
               </div>
-              <button style={styles.button} onClick={() => setActiveArticle(featured)}>
-                Read Article
-              </button>
+             <button
+  style={styles.button}
+  onClick={() => {
+    window.location.hash = featured.slug;
+    setActiveArticle(featured);
+  }}
+>
+  Read Article
+</button>
             </div>
 
             <aside style={styles.sideCard} id="about">
@@ -482,9 +500,15 @@ export default function App() {
                       {article.title}
                     </h3>
                     <p style={{ lineHeight: 1.7 }}>{article.dek}</p>
-                    <button style={styles.button} onClick={() => setActiveArticle(article)}>
-                      Read More
-                    </button>
+                    <button
+  style={styles.button}
+  onClick={() => {
+    window.location.hash = article.slug;
+    setActiveArticle(article);
+  }}
+>
+  Read More
+</button>
                   </div>
                 </article>
               ))}
@@ -497,7 +521,13 @@ export default function App() {
         © 2026 The Home Crowd Rally Point. All rights reserved.
       </footer>
 
-      <ArticleModal article={activeArticle} onClose={() => setActiveArticle(null)} />
+      <ArticleModal
+  article={activeArticle}
+  onClose={() => {
+    setActiveArticle(null);
+    window.history.pushState("", document.title, window.location.pathname);
+  }}
+/>
     </div>
   );
 }
