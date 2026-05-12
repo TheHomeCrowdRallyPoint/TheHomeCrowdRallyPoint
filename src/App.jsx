@@ -1,15 +1,12 @@
 import React, { useMemo, useState } from "react";
-import { Search, Menu, Clock, CalendarDays, ArrowRight, Newspaper, Trophy, X } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
-const siteColors = {
+const colors = {
   navy: "#0C2340",
-  titansBlue: "#4B92DB",
+  blue: "#4B92DB",
   red: "#C8102E",
   silver: "#A5ACAF",
   white: "#FFFFFF",
-  black: "#000000"
+  black: "#000000",
 };
 
 const articles = [
@@ -25,8 +22,8 @@ const articles = [
     body: [
       "The Titans do not need primetime games built only around nostalgia or big-market opponents. They need games with stories people can follow.",
       "Houston brings the rivalry and the Oilers-color controversy. New York brings Brian Daboll, Wan'Dale Robinson, and the Cam Ward-Jaxson Dart quarterback comparison. Las Vegas brings two rebuilds and Fernando Mendoza. Washington brings Jayden Daniels as the progress test. Dallas brings the biggest national stage possible.",
-      "That is exactly the kind of five-game primetime slate Tennessee needs."
-    ]
+      "That is exactly the kind of five-game primetime slate Tennessee needs.",
+    ],
   },
   {
     id: 2,
@@ -40,8 +37,8 @@ const articles = [
     body: [
       "Rebuilds are usually discussed like waiting rooms. Fans are told to be patient, trust the process, and look toward the future.",
       "But the best rebuilds give people a reason to watch before the final product is ready. Tennessee has that opportunity now.",
-      "The story is not just whether the Titans are back. It is whether the rest of the league can see the direction forming."
-    ]
+      "The story is not just whether the Titans are back. It is whether the rest of the league can see the direction forming.",
+    ],
   },
   {
     id: 3,
@@ -55,129 +52,278 @@ const articles = [
     body: [
       "Uniforms can create energy. They can reconnect a fanbase. They can make a franchise feel fresh again.",
       "But the look only matters if the football starts to match it. The Titans have a chance to build something with visual identity and competitive identity at the same time.",
-      "That is what fans are really looking for: not just a better jersey, but a better direction."
-    ]
-  }
+      "That is what fans are really looking for: not just a better jersey, but a better direction.",
+    ],
+  },
 ];
 
-function BrandMark() {
+const styles = {
+  page: {
+    minHeight: "100vh",
+    background: colors.white,
+    color: colors.black,
+    fontFamily: "Arial, Helvetica, sans-serif",
+  },
+  header: {
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    background: colors.white,
+    borderBottom: `5px solid ${colors.red}`,
+    padding: "18px 24px",
+  },
+  container: {
+    maxWidth: "1180px",
+    margin: "0 auto",
+  },
+  headerInner: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "20px",
+  },
+  brand: {
+    display: "flex",
+    alignItems: "center",
+    gap: "14px",
+  },
+  brandMark: {
+    width: "56px",
+    height: "56px",
+    borderRadius: "16px",
+    background: colors.blue,
+    border: `4px solid ${colors.red}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: 900,
+    fontSize: "20px",
+    color: colors.black,
+    boxShadow: `inset 0 0 0 3px ${colors.white}`,
+  },
+  siteTitle: {
+    margin: 0,
+    fontSize: "24px",
+    fontWeight: 900,
+    color: colors.black,
+  },
+  siteSub: {
+    margin: 0,
+    fontSize: "12px",
+    fontWeight: 900,
+    letterSpacing: "3px",
+    color: colors.black,
+  },
+  nav: {
+    display: "flex",
+    gap: "22px",
+    fontWeight: 900,
+  },
+  navLink: {
+    color: colors.black,
+    textDecoration: "none",
+  },
+  main: {
+    padding: "36px 24px",
+  },
+  heroGrid: {
+    display: "grid",
+    gridTemplateColumns: "1.3fr 0.7fr",
+    gap: "24px",
+  },
+  hero: {
+    border: `5px solid ${colors.navy}`,
+    borderRadius: "24px",
+    padding: "36px",
+    background: `linear-gradient(135deg, ${colors.white} 0%, #f3f9ff 55%, #e7f2ff 100%)`,
+    color: colors.black,
+    boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
+  },
+  badge: {
+    display: "inline-block",
+    border: `3px solid ${colors.blue}`,
+    borderRadius: "999px",
+    padding: "8px 14px",
+    fontWeight: 900,
+    marginBottom: "18px",
+    color: colors.black,
+    background: colors.white,
+  },
+  h1: {
+    margin: 0,
+    fontSize: "52px",
+    lineHeight: 1,
+    fontWeight: 900,
+    color: colors.black,
+  },
+  dek: {
+    fontSize: "20px",
+    lineHeight: 1.6,
+    color: colors.black,
+  },
+  meta: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "14px",
+    fontWeight: 900,
+    color: colors.black,
+    marginTop: "20px",
+  },
+  button: {
+    marginTop: "26px",
+    background: colors.blue,
+    color: colors.black,
+    border: `3px solid ${colors.red}`,
+    borderRadius: "16px",
+    padding: "14px 20px",
+    fontWeight: 900,
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+  sideCard: {
+    border: `5px solid ${colors.silver}`,
+    borderRadius: "24px",
+    padding: "28px",
+    background: colors.white,
+    color: colors.black,
+  },
+  sectionHeader: {
+    marginTop: "56px",
+    marginBottom: "20px",
+  },
+  h2: {
+    margin: 0,
+    fontSize: "36px",
+    fontWeight: 900,
+    color: colors.black,
+  },
+  searchRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    gap: "18px",
+    alignItems: "center",
+    flexWrap: "wrap",
+  },
+  input: {
+    border: `4px solid ${colors.blue}`,
+    borderRadius: "16px",
+    padding: "14px",
+    fontWeight: 800,
+    color: colors.black,
+    minWidth: "260px",
+  },
+  filters: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "10px",
+    margin: "20px 0 28px",
+  },
+  filterButton: {
+    background: colors.white,
+    color: colors.black,
+    border: `3px solid ${colors.blue}`,
+    borderRadius: "999px",
+    padding: "10px 16px",
+    fontWeight: 900,
+    cursor: "pointer",
+  },
+  activeFilter: {
+    background: colors.blue,
+    border: `3px solid ${colors.red}`,
+  },
+  cardGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "24px",
+  },
+  card: {
+    border: `5px solid ${colors.silver}`,
+    borderRadius: "24px",
+    overflow: "hidden",
+    background: colors.white,
+    color: colors.black,
+  },
+  cardTop: {
+    height: "145px",
+    background: colors.blue,
+    borderBottom: `5px solid ${colors.red}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    padding: "16px",
+    fontSize: "28px",
+    fontWeight: 900,
+    color: colors.black,
+  },
+  cardBody: {
+    padding: "24px",
+  },
+  modalOverlay: {
+    position: "fixed",
+    inset: 0,
+    background: "rgba(0,0,0,0.75)",
+    zIndex: 99,
+    padding: "20px",
+    overflowY: "auto",
+  },
+  modal: {
+    maxWidth: "820px",
+    margin: "20px auto",
+    background: colors.white,
+    border: `5px solid ${colors.blue}`,
+    borderRadius: "24px",
+    padding: "34px",
+    color: colors.black,
+  },
+  close: {
+    float: "right",
+    border: `3px solid ${colors.red}`,
+    background: colors.white,
+    borderRadius: "999px",
+    width: "40px",
+    height: "40px",
+    fontWeight: 900,
+    cursor: "pointer",
+    color: colors.black,
+  },
+  footer: {
+    borderTop: `5px solid ${colors.blue}`,
+    padding: "28px",
+    textAlign: "center",
+    fontWeight: 900,
+    color: colors.black,
+  },
+};
+
+function Brand() {
   return (
-    <div className="flex items-center gap-3">
-      <div
-        className="relative flex h-14 w-14 items-center justify-center rounded-2xl border-4 text-lg font-black shadow-sm"
-        style={{ backgroundColor: siteColors.titansBlue, borderColor: siteColors.red, color: siteColors.black }}
-      >
-        <span className="absolute inset-1 rounded-xl border-2 border-white" />
-        <span className="relative z-10">HC</span>
-      </div>
+    <div style={styles.brand}>
+      <div style={styles.brandMark}>HC</div>
       <div>
-        <p className="text-xl font-black leading-none text-black md:text-2xl">The Home Crowd</p>
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-black">Rally Point</p>
+        <p style={styles.siteTitle}>The Home Crowd</p>
+        <p style={styles.siteSub}>RALLY POINT</p>
       </div>
     </div>
   );
 }
 
-function ArticleHero({ article, onRead }) {
-  return (
-    <section className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-      <div className="relative overflow-hidden rounded-2xl border-4 bg-white p-8 text-black shadow-xl" style={{ borderColor: siteColors.navy }}>
-        <div className="absolute inset-0 opacity-25">
-          <div className="absolute -left-20 top-10 h-56 w-56 rounded-full blur-3xl" style={{ backgroundColor: siteColors.titansBlue }} />
-          <div className="absolute bottom-0 right-0 h-72 w-72 rounded-full blur-3xl" style={{ backgroundColor: siteColors.red }} />
-        </div>
-        <div className="absolute left-0 top-0 h-3 w-full" style={{ backgroundColor: siteColors.titansBlue }} />
-        <div className="absolute bottom-0 left-0 h-3 w-full" style={{ backgroundColor: siteColors.red }} />
-        <div className="relative z-10 max-w-3xl">
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border-2 bg-white px-4 py-2 text-sm font-black text-black shadow-sm" style={{ borderColor: siteColors.titansBlue }}>
-            <Trophy className="h-4 w-4" /> Featured Article
-          </div>
-          <h1 className="text-4xl font-black tracking-tight text-black md:text-6xl">{article.title}</h1>
-          <p className="mt-5 text-lg leading-8 text-black md:text-xl">{article.dek}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm font-bold text-black">
-            <span className="rounded-full border-2 bg-white px-3 py-1 text-black" style={{ borderColor: siteColors.red }}>{article.category}</span>
-            <span className="flex items-center gap-2"><CalendarDays className="h-4 w-4" /> {article.date}</span>
-            <span className="flex items-center gap-2"><Clock className="h-4 w-4" /> {article.readTime}</span>
-          </div>
-          <Button onClick={() => onRead(article)} className="mt-8 rounded-2xl px-6 py-6 text-base font-black text-black hover:opacity-90" style={{ backgroundColor: siteColors.titansBlue }}>
-            Read Article <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </div>
-      </div>
-
-      <Card className="rounded-2xl border-4 bg-white shadow-sm" style={{ borderColor: siteColors.silver }}>
-        <CardContent className="p-6">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="rounded-2xl border-2 bg-white p-3" style={{ borderColor: siteColors.red }}>
-              <Newspaper className="h-6 w-6 text-black" />
-            </div>
-            <div>
-              <p className="text-sm font-black uppercase tracking-wide text-black">About the site</p>
-              <h2 className="text-2xl font-black text-black">The Home Crowd Rally Point</h2>
-            </div>
-          </div>
-          <p className="leading-7 text-black">
-            A fan-first sports media home for Titans coverage, NFL storylines, roster-building thoughts, and conversational analysis.
-          </p>
-          <div className="mt-6 grid gap-3">
-            <div className="rounded-2xl border-2 bg-white p-4" style={{ borderColor: siteColors.titansBlue }}>
-              <p className="text-sm font-black text-black">Primary Focus</p>
-              <p className="font-black text-black">Tennessee Titans + NFL</p>
-            </div>
-            <div className="rounded-2xl border-2 bg-white p-4" style={{ borderColor: siteColors.red }}>
-              <p className="text-sm font-black text-black">Voice</p>
-              <p className="font-black text-black">Sports media, conversational, opinionated</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </section>
-  );
-}
-
-function ArticleCard({ article, onRead }) {
-  return (
-    <Card className="group overflow-hidden rounded-2xl border-4 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg" style={{ borderColor: siteColors.silver }}>
-      <div className="flex h-40 items-center justify-center border-b-4 px-6 text-center text-3xl font-black tracking-tight text-black" style={{ backgroundColor: siteColors.titansBlue, borderColor: siteColors.red }}>
-        {article.imageLabel}
-      </div>
-      <CardContent className="p-6">
-        <div className="mb-3 flex flex-wrap items-center gap-3 text-sm font-bold text-black">
-          <span className="rounded-full border-2 bg-white px-3 py-1 font-black text-black" style={{ borderColor: siteColors.titansBlue }}>{article.category}</span>
-          <span>{article.readTime}</span>
-        </div>
-        <h3 className="text-2xl font-black leading-tight text-black group-hover:underline">{article.title}</h3>
-        <p className="mt-3 leading-7 text-black">{article.dek}</p>
-        <Button variant="ghost" onClick={() => onRead(article)} className="mt-5 rounded-xl px-0 font-black text-black hover:bg-transparent">
-          Read more <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
-
-function ReaderModal({ article, onClose }) {
+function ArticleModal({ article, onClose }) {
   if (!article) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 p-4 backdrop-blur-sm">
-      <article className="mx-auto my-6 max-w-3xl rounded-2xl border-4 bg-white p-6 shadow-2xl md:p-10" style={{ borderColor: siteColors.titansBlue }}>
-        <div className="mb-8 flex items-start justify-between gap-4">
-          <div>
-            <p className="mb-3 text-sm font-black uppercase tracking-wide text-black">{article.category}</p>
-            <h2 className="text-4xl font-black leading-tight text-black md:text-5xl">{article.title}</h2>
-            <p className="mt-4 text-lg leading-8 text-black">{article.dek}</p>
-            <div className="mt-5 flex flex-wrap gap-4 text-sm font-bold text-black">
-              <span>By {article.author}</span>
-              <span>{article.date}</span>
-              <span>{article.readTime}</span>
-            </div>
-          </div>
-          <Button variant="ghost" size="icon" onClick={onClose} className="shrink-0 rounded-full text-black">
-            <X className="h-5 w-5" />
-          </Button>
-        </div>
-        <div className="space-y-6 text-lg leading-9 text-black">
+    <div style={styles.modalOverlay}>
+      <article style={styles.modal}>
+        <button style={styles.close} onClick={onClose}>
+          X
+        </button>
+        <p style={{ fontWeight: 900 }}>{article.category}</p>
+        <h1 style={{ ...styles.h1, fontSize: "42px" }}>{article.title}</h1>
+        <p style={styles.dek}>{article.dek}</p>
+        <p style={{ fontWeight: 900 }}>
+          By {article.author} · {article.date} · {article.readTime}
+        </p>
+        <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
           {article.body.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
@@ -187,101 +333,126 @@ function ReaderModal({ article, onClose }) {
   );
 }
 
-export default function TheHomeCrowdRallyPointArticleSite() {
+export default function App() {
   const [query, setQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [category, setCategory] = useState("All");
   const [activeArticle, setActiveArticle] = useState(null);
 
-  const categories = ["All", ...Array.from(new Set(articles.map((article) => article.category)))];
+  const categories = ["All", ...new Set(articles.map((article) => article.category))];
 
   const filteredArticles = useMemo(() => {
     return articles.filter((article) => {
-      const matchesCategory = selectedCategory === "All" || article.category === selectedCategory;
-      const matchesQuery = `${article.title} ${article.dek} ${article.category}`.toLowerCase().includes(query.toLowerCase());
-      return matchesCategory && matchesQuery;
-    });
-  }, [query, selectedCategory]);
+      const matchesCategory = category === "All" || article.category === category;
+      const matchesSearch = `${article.title} ${article.dek} ${article.category}`
+        .toLowerCase()
+        .includes(query.toLowerCase());
 
-  const featuredArticle = articles[0];
+      return matchesCategory && matchesSearch;
+    });
+  }, [query, category]);
+
+  const featured = articles[0];
 
   return (
-    <main className="min-h-screen bg-white text-black">
-      <header className="sticky top-0 z-40 border-b-4 bg-white/95 backdrop-blur" style={{ borderColor: siteColors.red }}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-          <BrandMark />
-          <nav className="hidden items-center gap-6 text-sm font-black text-black md:flex">
-            <a href="#latest" className="hover:underline">Latest</a>
-            <a href="#about" className="hover:underline">About</a>
-            <a href="mailto:youremail@example.com" className="hover:underline">Contact</a>
+    <div style={styles.page}>
+      <header style={styles.header}>
+        <div style={{ ...styles.container, ...styles.headerInner }}>
+          <Brand />
+          <nav style={styles.nav}>
+            <a style={styles.navLink} href="#latest">Latest</a>
+            <a style={styles.navLink} href="#about">About</a>
+            <a style={styles.navLink} href="mailto:youremail@example.com">Contact</a>
           </nav>
-          <Button variant="ghost" size="icon" className="text-black md:hidden">
-            <Menu className="h-5 w-5" />
-          </Button>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-12">
-        <ArticleHero article={featuredArticle} onRead={setActiveArticle} />
-
-        <section id="latest" className="mt-14">
-          <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-wide text-black">Latest Articles</p>
-              <h2 className="text-3xl font-black text-black md:text-4xl">Read the latest from The Home Crowd Rally Point</h2>
+      <main style={styles.main}>
+        <div style={styles.container}>
+          <section style={styles.heroGrid}>
+            <div style={styles.hero}>
+              <span style={styles.badge}>Featured Article</span>
+              <h1 style={styles.h1}>{featured.title}</h1>
+              <p style={styles.dek}>{featured.dek}</p>
+              <div style={styles.meta}>
+                <span>{featured.category}</span>
+                <span>{featured.date}</span>
+                <span>{featured.readTime}</span>
+              </div>
+              <button style={styles.button} onClick={() => setActiveArticle(featured)}>
+                Read Article
+              </button>
             </div>
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-black" />
+
+            <aside style={styles.sideCard} id="about">
+              <h2 style={{ ...styles.h2, fontSize: "30px" }}>
+                The Home Crowd Rally Point
+              </h2>
+              <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
+                A fan-first sports media home for Titans coverage, NFL storylines,
+                roster-building thoughts, and conversational analysis.
+              </p>
+              <p style={{ fontWeight: 900 }}>Primary Focus</p>
+              <p>Tennessee Titans + NFL</p>
+              <p style={{ fontWeight: 900 }}>Voice</p>
+              <p>Sports media, conversational, opinionated</p>
+            </aside>
+          </section>
+
+          <section id="latest" style={styles.sectionHeader}>
+            <div style={styles.searchRow}>
+              <div>
+                <p style={{ fontWeight: 900 }}>LATEST ARTICLES</p>
+                <h2 style={styles.h2}>Read the latest from The Home Crowd Rally Point</h2>
+              </div>
               <input
+                style={styles.input}
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search articles..."
-                className="w-full rounded-2xl border-4 bg-white py-3 pl-10 pr-4 text-sm font-bold text-black outline-none placeholder:text-black focus:ring-4"
-                style={{ borderColor: siteColors.titansBlue }}
               />
             </div>
-          </div>
 
-          <div className="mb-8 flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant="outline"
-                onClick={() => setSelectedCategory(category)}
-                className="rounded-full border-2 font-black text-black hover:opacity-90"
-                style={{
-                  borderColor: selectedCategory === category ? siteColors.red : siteColors.titansBlue,
-                  backgroundColor: selectedCategory === category ? siteColors.titansBlue : siteColors.white
-                }}
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
+            <div style={styles.filters}>
+              {categories.map((item) => (
+                <button
+                  key={item}
+                  style={{
+                    ...styles.filterButton,
+                    ...(category === item ? styles.activeFilter : {}),
+                  }}
+                  onClick={() => setCategory(item)}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filteredArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} onRead={setActiveArticle} />
-            ))}
-          </div>
-        </section>
+            <div style={styles.cardGrid}>
+              {filteredArticles.map((article) => (
+                <article key={article.id} style={styles.card}>
+                  <div style={styles.cardTop}>{article.imageLabel}</div>
+                  <div style={styles.cardBody}>
+                    <p style={{ fontWeight: 900 }}>{article.category} · {article.readTime}</p>
+                    <h3 style={{ fontSize: "26px", fontWeight: 900, color: colors.black }}>
+                      {article.title}
+                    </h3>
+                    <p style={{ lineHeight: 1.7 }}>{article.dek}</p>
+                    <button style={styles.button} onClick={() => setActiveArticle(article)}>
+                      Read More
+                    </button>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+      </main>
 
-        <section id="about" className="mt-16 rounded-2xl border-4 bg-white p-6 md:p-10" style={{ borderColor: siteColors.navy }}>
-          <div className="max-w-3xl">
-            <p className="text-sm font-black uppercase tracking-wide text-black">Built for readers</p>
-            <h2 className="mt-2 text-3xl font-black text-black">A simple home for Titans and NFL articles.</h2>
-            <p className="mt-4 text-lg leading-8 text-black">
-              The Home Crowd Rally Point is built for opinion pieces, matchup previews, roster analysis, rebuild talk, and long-form football coverage. The colors are inspired by Tennessee’s new look, but the site uses its own original branding instead of the Titans logo.
-            </p>
-          </div>
-        </section>
-      </div>
-
-      <footer className="border-t-4 px-4 py-8 text-center text-sm font-bold text-black" style={{ borderColor: siteColors.titansBlue }}>
+      <footer style={styles.footer}>
         © 2026 The Home Crowd Rally Point. All rights reserved.
       </footer>
 
-      <ReaderModal article={activeArticle} onClose={() => setActiveArticle(null)} />
-    </main>
+      <ArticleModal article={activeArticle} onClose={() => setActiveArticle(null)} />
+    </div>
   );
 }
-
