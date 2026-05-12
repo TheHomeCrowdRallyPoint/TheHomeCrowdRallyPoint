@@ -288,6 +288,54 @@ const styles = {
     fontWeight: 700,
   },
 
+  aboutSection: {
+    marginTop: "34px",
+    border: `5px solid ${colors.navy}`,
+    borderRadius: "24px",
+    padding: "40px",
+    background: colors.white,
+    color: colors.black,
+    boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
+  },
+
+  aboutGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: "24px",
+    marginTop: "24px",
+  },
+
+  aboutCard: {
+    border: `4px solid ${colors.silver}`,
+    borderRadius: "22px",
+    padding: "26px",
+    background: `linear-gradient(135deg, ${colors.white} 0%, #f8fbff 100%)`,
+  },
+
+  aboutCardTitle: {
+    margin: 0,
+    fontSize: "24px",
+    fontWeight: 900,
+    color: colors.black,
+  },
+
+  aboutText: {
+    fontSize: "18px",
+    lineHeight: 1.75,
+    color: colors.black,
+  },
+
+  goalBox: {
+    marginTop: "24px",
+    borderLeft: `8px solid ${colors.red}`,
+    padding: "22px",
+    background: "#f8fbff",
+    borderRadius: "18px",
+    fontSize: "20px",
+    lineHeight: 1.6,
+    fontWeight: 900,
+  },
+
   articleShell: {
     maxWidth: "850px",
     margin: "0 auto",
@@ -538,8 +586,8 @@ export default function App() {
               Home
             </a>
 
-            <a style={styles.navLink} href="#about">
-              About
+            <a style={styles.navLink} href="#about-me">
+              About Me
             </a>
 
             <a style={styles.navLink} href={`mailto:${contactEmail}`}>
@@ -628,7 +676,6 @@ export default function App() {
                 minHeight: isMobile ? "auto" : "360px",
                 borderWidth: isMobile ? "4px" : "5px",
               }}
-              id="about"
             >
               <div>
                 <span style={styles.eyebrow}>About the Site</span>
@@ -681,6 +728,119 @@ export default function App() {
                 </button>
               </div>
             </aside>
+          </section>
+
+          <section
+            id="about-me"
+            style={{
+              ...styles.aboutSection,
+              padding: isMobile ? "24px" : "40px",
+              borderWidth: isMobile ? "4px" : "5px",
+            }}
+          >
+            <span style={styles.eyebrow}>About Me</span>
+
+            <h2 style={styles.h2}>Jeremy Neasley</h2>
+
+            <div
+              style={{
+                ...styles.aboutGrid,
+                gridTemplateColumns: isMobile
+                  ? "1fr"
+                  : styles.aboutGrid.gridTemplateColumns,
+              }}
+            >
+              <div
+                style={{
+                  ...styles.aboutCard,
+                  padding: isMobile ? "22px" : "26px",
+                  borderWidth: isMobile ? "4px" : "4px",
+                }}
+              >
+                <h3 style={styles.aboutCardTitle}>Who I Am</h3>
+
+                <p
+                  style={{
+                    ...styles.aboutText,
+                    fontSize: isMobile ? "17px" : "18px",
+                  }}
+                >
+                  My name is Jeremy Neasley, founder of The Home Crowd Rally
+                  Point.
+                </p>
+
+                <p
+                  style={{
+                    ...styles.aboutText,
+                    fontSize: isMobile ? "17px" : "18px",
+                  }}
+                >
+                  I currently work in healthcare. I am also a Veteran who spent
+                  my career at Fort Campbell. Football has always been one of my
+                  biggest passions. I am a Titans fan, I love the game, and I
+                  enjoy writing, so this site is my way of bringing those things
+                  together.
+                </p>
+
+                <p
+                  style={{
+                    ...styles.aboutText,
+                    fontSize: isMobile ? "17px" : "18px",
+                  }}
+                >
+                  I was raised a Cowboys fan until the Houston Oilers moved to
+                  Tennessee. Once they became Tennessee’s team, I have been with
+                  them ever since. That connection is a big part of why I care
+                  about the direction of the franchise, the storylines around the
+                  team, and the way Titans fans talk about what is being built.
+                </p>
+              </div>
+
+              <div
+                style={{
+                  ...styles.aboutCard,
+                  padding: isMobile ? "22px" : "26px",
+                  borderWidth: isMobile ? "4px" : "4px",
+                }}
+              >
+                <h3 style={styles.aboutCardTitle}>Why I Do This</h3>
+
+                <p
+                  style={{
+                    ...styles.aboutText,
+                    fontSize: isMobile ? "17px" : "18px",
+                  }}
+                >
+                  I want to write about the Titans in a way that feels like
+                  sitting with real fans, having real conversations, but with
+                  enough structure and thought behind it to make the discussion
+                  matter.
+                </p>
+
+                <p
+                  style={{
+                    ...styles.aboutText,
+                    fontSize: isMobile ? "17px" : "18px",
+                  }}
+                >
+                  That means looking beyond just wins, losses, and box scores. I
+                  care about the bigger picture: team identity, roster direction,
+                  coaching decisions, player development, rivalries, and the
+                  moments that shape how fans see the franchise.
+                </p>
+              </div>
+            </div>
+
+            <div
+              style={{
+                ...styles.goalBox,
+                fontSize: isMobile ? "18px" : "20px",
+                padding: isMobile ? "18px" : "22px",
+              }}
+            >
+              The goal is simple: tell better football stories. Build better
+              football conversations. Give Titans fans a rally point.
+            </div>
           </section>
         </div>
       </main>
