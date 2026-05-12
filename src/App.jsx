@@ -83,6 +83,25 @@ const articles = [
   },
 ];
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.innerWidth < 768;
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isMobile;
+}
+
 const styles = {
   page: {
     minHeight: "100vh",
@@ -92,12 +111,11 @@ const styles = {
   },
 
   header: {
-    position: "sticky",
-    top: 0,
+    position: "relative",
     zIndex: 10,
     background: colors.white,
     borderBottom: `5px solid ${colors.red}`,
-    padding: "10px 24px",
+    padding: "10px 16px",
     boxShadow: "0 8px 22px rgba(0,0,0,0.08)",
   },
 
@@ -110,7 +128,7 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "24px",
+    gap: "18px",
     flexWrap: "wrap",
   },
 
@@ -131,7 +149,7 @@ const styles = {
 
   nav: {
     display: "flex",
-    gap: "12px",
+    gap: "10px",
     fontWeight: 900,
     flexWrap: "wrap",
     alignItems: "center",
@@ -142,13 +160,13 @@ const styles = {
     textDecoration: "none",
     border: `3px solid ${colors.blue}`,
     borderRadius: "999px",
-    padding: "10px 14px",
+    padding: "9px 12px",
     background: colors.white,
-    fontSize: "14px",
+    fontSize: "13px",
   },
 
   main: {
-    padding: "42px 24px 60px",
+    padding: "28px 16px 46px",
   },
 
   heroGrid: {
@@ -180,7 +198,7 @@ const styles = {
 
   h1: {
     margin: 0,
-    fontSize: "clamp(38px, 6vw, 58px)",
+    fontSize: "clamp(34px, 8vw, 58px)",
     lineHeight: 1,
     fontWeight: 900,
     color: colors.black,
@@ -240,7 +258,7 @@ const styles = {
 
   h2: {
     margin: 0,
-    fontSize: "clamp(28px, 5vw, 36px)",
+    fontSize: "clamp(28px, 7vw, 36px)",
     fontWeight: 900,
     color: colors.black,
   },
@@ -270,54 +288,6 @@ const styles = {
     fontWeight: 700,
   },
 
-  aboutSection: {
-    marginTop: "34px",
-    border: `5px solid ${colors.navy}`,
-    borderRadius: "24px",
-    padding: "40px",
-    background: colors.white,
-    color: colors.black,
-    boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
-  },
-
-  aboutGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "24px",
-    marginTop: "24px",
-  },
-
-  aboutCard: {
-    border: `4px solid ${colors.silver}`,
-    borderRadius: "22px",
-    padding: "26px",
-    background: `linear-gradient(135deg, ${colors.white} 0%, #f8fbff 100%)`,
-  },
-
-  aboutCardTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 900,
-    color: colors.black,
-  },
-
-  aboutText: {
-    fontSize: "18px",
-    lineHeight: 1.75,
-    color: colors.black,
-  },
-
-  goalBox: {
-    marginTop: "24px",
-    borderLeft: `8px solid ${colors.red}`,
-    padding: "22px",
-    background: "#f8fbff",
-    borderRadius: "18px",
-    fontSize: "20px",
-    lineHeight: 1.6,
-    fontWeight: 900,
-  },
-
   articleShell: {
     maxWidth: "850px",
     margin: "0 auto",
@@ -330,26 +300,38 @@ const styles = {
 
   footer: {
     borderTop: `5px solid ${colors.blue}`,
-    padding: "28px",
+    padding: "24px 16px",
     textAlign: "center",
     fontWeight: 900,
     color: colors.black,
     lineHeight: 1.8,
+    fontSize: "14px",
   },
 
   footerLink: {
     color: colors.black,
     textDecoration: "none",
+    overflowWrap: "anywhere",
   },
 };
 
-function Brand() {
+function Brand({ isMobile }) {
   return (
-    <a href="/" style={styles.brandLink}>
+    <a
+      href="/"
+      style={{
+        ...styles.brandLink,
+        justifyContent: isMobile ? "center" : "flex-start",
+        width: isMobile ? "100%" : "auto",
+      }}
+    >
       <img
         src="/logo.png"
         alt="The Home Crowd Rally Point logo"
-        style={styles.logoImage}
+        style={{
+          ...styles.logoImage,
+          width: isMobile ? "260px" : "340px",
+        }}
       />
     </a>
   );
@@ -377,17 +359,26 @@ function Footer() {
 }
 
 function ArticlePage({ article, onBack }) {
+  const isMobile = useIsMobile();
+
   return (
     <div style={styles.page}>
       <header style={styles.header}>
-        <div style={{ ...styles.container, ...styles.headerInner }}>
-          <Brand />
+        <div
+          style={{
+            ...styles.container,
+            ...styles.headerInner,
+            justifyContent: isMobile ? "center" : "space-between",
+          }}
+        >
+          <Brand isMobile={isMobile} />
 
           <button
             style={{
               ...styles.button,
               marginTop: 0,
               background: colors.white,
+              width: isMobile ? "100%" : "auto",
             }}
             onClick={onBack}
           >
@@ -396,21 +387,50 @@ function ArticlePage({ article, onBack }) {
         </div>
       </header>
 
-      <main style={styles.main}>
-        <article style={styles.articleShell}>
+      <main
+        style={{
+          ...styles.main,
+          padding: isMobile ? "20px 12px 38px" : styles.main.padding,
+        }}
+      >
+        <article
+          style={{
+            ...styles.articleShell,
+            padding: isMobile ? "22px" : "34px",
+            borderWidth: isMobile ? "4px" : "5px",
+          }}
+        >
           <p style={{ fontWeight: 900 }}>{article.category}</p>
 
-          <h1 style={{ ...styles.h1, fontSize: "clamp(36px, 6vw, 46px)" }}>
+          <h1
+            style={{
+              ...styles.h1,
+              fontSize: isMobile ? "34px" : "clamp(36px, 6vw, 46px)",
+              lineHeight: 1.05,
+            }}
+          >
             {article.title}
           </h1>
 
-          <p style={styles.dek}>{article.dek}</p>
+          <p
+            style={{
+              ...styles.dek,
+              fontSize: isMobile ? "18px" : "20px",
+            }}
+          >
+            {article.dek}
+          </p>
 
           <p style={{ fontWeight: 900 }}>
             By {article.author} · {article.date} · {article.readTime}
           </p>
 
-          <div style={{ fontSize: "19px", lineHeight: 1.8 }}>
+          <div
+            style={{
+              fontSize: isMobile ? "18px" : "19px",
+              lineHeight: isMobile ? 1.7 : 1.8,
+            }}
+          >
             {article.body.map((paragraph, index) => {
               const isGameSubtitle =
                 paragraph.startsWith("1. Home or Away Game vs Houston Texans") ||
@@ -427,8 +447,14 @@ function ArticlePage({ article, onBack }) {
                   key={index}
                   style={{
                     fontWeight: isGameSubtitle || isWhyLine ? 900 : 400,
-                    fontSize: isGameSubtitle ? "26px" : "19px",
-                    marginTop: isGameSubtitle ? "34px" : "16px",
+                    fontSize: isGameSubtitle
+                      ? isMobile
+                        ? "23px"
+                        : "26px"
+                      : isMobile
+                      ? "18px"
+                      : "19px",
+                    marginTop: isGameSubtitle ? "32px" : "16px",
                     color: colors.black,
                   }}
                 >
@@ -442,6 +468,7 @@ function ArticlePage({ article, onBack }) {
             style={{
               ...styles.button,
               background: colors.white,
+              width: isMobile ? "100%" : "auto",
             }}
             onClick={onBack}
           >
@@ -458,6 +485,7 @@ function ArticlePage({ article, onBack }) {
 export default function App() {
   const [activeArticle, setActiveArticle] = useState(null);
   const featured = articles[0];
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const slugFromUrl = window.location.hash.replace("#", "");
@@ -488,16 +516,30 @@ export default function App() {
   return (
     <div style={styles.page}>
       <header style={styles.header}>
-        <div style={{ ...styles.container, ...styles.headerInner }}>
-          <Brand />
+        <div
+          style={{
+            ...styles.container,
+            ...styles.headerInner,
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: isMobile ? "center" : "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Brand isMobile={isMobile} />
 
-          <nav style={styles.nav}>
+          <nav
+            style={{
+              ...styles.nav,
+              justifyContent: "center",
+              width: isMobile ? "100%" : "auto",
+            }}
+          >
             <a style={styles.navLink} href="/">
               Home
             </a>
 
-            <a style={styles.navLink} href="#about-me">
-              About Me
+            <a style={styles.navLink} href="#about">
+              About
             </a>
 
             <a style={styles.navLink} href={`mailto:${contactEmail}`}>
@@ -516,15 +558,48 @@ export default function App() {
         </div>
       </header>
 
-      <main style={styles.main}>
+      <main
+        style={{
+          ...styles.main,
+          padding: isMobile ? "22px 12px 40px" : styles.main.padding,
+        }}
+      >
         <div style={styles.container}>
-          <section style={styles.heroGrid}>
-            <div style={styles.hero}>
+          <section
+            style={{
+              ...styles.heroGrid,
+              gridTemplateColumns: isMobile
+                ? "1fr"
+                : styles.heroGrid.gridTemplateColumns,
+            }}
+          >
+            <div
+              style={{
+                ...styles.hero,
+                padding: isMobile ? "24px" : "40px",
+                borderWidth: isMobile ? "4px" : "5px",
+              }}
+            >
               <span style={styles.badge}>Featured Article</span>
 
-              <h1 style={styles.h1}>{featured.title}</h1>
+              <h1
+                style={{
+                  ...styles.h1,
+                  fontSize: isMobile ? "36px" : styles.h1.fontSize,
+                  lineHeight: 1.05,
+                }}
+              >
+                {featured.title}
+              </h1>
 
-              <p style={styles.dek}>{featured.dek}</p>
+              <p
+                style={{
+                  ...styles.dek,
+                  fontSize: isMobile ? "18px" : "20px",
+                }}
+              >
+                {featured.dek}
+              </p>
 
               <div style={styles.meta}>
                 <span>{featured.category}</span>
@@ -533,7 +608,10 @@ export default function App() {
               </div>
 
               <button
-                style={styles.button}
+                style={{
+                  ...styles.button,
+                  width: isMobile ? "100%" : "auto",
+                }}
                 onClick={() => {
                   window.location.hash = featured.slug;
                   setActiveArticle(featured);
@@ -543,15 +621,33 @@ export default function App() {
               </button>
             </div>
 
-            <aside style={styles.sideCard}>
+            <aside
+              style={{
+                ...styles.sideCard,
+                padding: isMobile ? "24px" : "32px",
+                minHeight: isMobile ? "auto" : "360px",
+                borderWidth: isMobile ? "4px" : "5px",
+              }}
+              id="about"
+            >
               <div>
                 <span style={styles.eyebrow}>About the Site</span>
 
-                <h2 style={{ ...styles.h2, fontSize: "34px" }}>
+                <h2
+                  style={{
+                    ...styles.h2,
+                    fontSize: isMobile ? "30px" : "34px",
+                  }}
+                >
                   Built for Titans Fans
                 </h2>
 
-                <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
+                <p
+                  style={{
+                    fontSize: isMobile ? "17px" : "18px",
+                    lineHeight: 1.7,
+                  }}
+                >
                   The Home Crowd Rally Point is a fan-first football site focused
                   on Titans storylines, roster direction, rebuild talk, and
                   national NFL conversations that matter to Tennessee.
@@ -574,6 +670,7 @@ export default function App() {
                   style={{
                     ...styles.button,
                     marginTop: "18px",
+                    width: isMobile ? "100%" : "auto",
                   }}
                   onClick={() => {
                     window.location.hash = featured.slug;
@@ -584,62 +681,6 @@ export default function App() {
                 </button>
               </div>
             </aside>
-          </section>
-
-          <section id="about-me" style={styles.aboutSection}>
-            <span style={styles.eyebrow}>About Me</span>
-
-            <h2 style={styles.h2}>Jeremy Neasley</h2>
-
-            <div style={styles.aboutGrid}>
-              <div style={styles.aboutCard}>
-                <h3 style={styles.aboutCardTitle}>Who I Am</h3>
-
-                <p style={styles.aboutText}>
-                  My name is Jeremy Neasley, founder of The Home Crowd Rally
-                  Point.
-                </p>
-
-                <p style={styles.aboutText}>
-                  I currently work in healthcare. I am also a Veteran who spent
-                  my career at Fort Campbell. Football has always been one of my
-                  biggest passions. I am a Titans fan, I love the game, and I
-                  enjoy writing, so this site is my way of bringing those things
-                  together.
-                </p>
-
-                <p style={styles.aboutText}>
-                  I was raised a Cowboys fan until the Houston Oilers moved to
-                  Tennessee. Once they became Tennessee’s team, I have been with
-                  them ever since. That connection is a big part of why I care
-                  about the direction of the franchise, the storylines around the
-                  team, and the way Titans fans talk about what is being built.
-                </p>
-              </div>
-
-              <div style={styles.aboutCard}>
-                <h3 style={styles.aboutCardTitle}>Why I Do This</h3>
-
-                <p style={styles.aboutText}>
-                  I want to write about the Titans in a way that feels like
-                  sitting with real fans, having real conversations, but with
-                  enough structure and thought behind it to make the discussion
-                  matter.
-                </p>
-
-                <p style={styles.aboutText}>
-                  That means looking beyond just wins, losses, and box scores. I
-                  care about the bigger picture: team identity, roster direction,
-                  coaching decisions, player development, rivalries, and the
-                  moments that shape how fans see the franchise.
-                </p>
-              </div>
-            </div>
-
-            <div style={styles.goalBox}>
-              The goal is simple: tell better football stories. Build better
-              football conversations. Give Titans fans a rally point.
-            </div>
           </section>
         </div>
       </main>
