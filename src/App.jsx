@@ -518,13 +518,23 @@ function ArticleCard({ article, isMobile, openArticle }) {
 
 function XFeedCard({ isMobile }) {
   useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.twttr &&
-      window.twttr.widgets
-    ) {
-      window.twttr.widgets.load();
+    function loadXWidget() {
+      if (
+        typeof window !== "undefined" &&
+        window.twttr &&
+        window.twttr.widgets
+      ) {
+        window.twttr.widgets.load();
+      }
     }
+
+    loadXWidget();
+
+    const timer = setTimeout(() => {
+      loadXWidget();
+    }, 1200);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -568,7 +578,7 @@ function XFeedCard({ isMobile }) {
           className="twitter-timeline"
           data-height={isMobile ? "500" : "620"}
           data-theme="light"
-          data-chrome="nofooter"
+          data-chrome="nofooter noborders transparent"
           href="https://twitter.com/HCRallyPoint"
         >
           Posts by @HCRallyPoint
