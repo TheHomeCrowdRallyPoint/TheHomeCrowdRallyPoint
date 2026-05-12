@@ -56,7 +56,7 @@ const articles = [
 
       "4. Home Game vs Washington Commanders",
       "This is the best “Cam Ward progress report” game on the list.",
-      "Jayden Daniels gives the Titans a clear quarterback measuring stick. He is the kind of young quarterback Tennessee wants Ward to become: dynamic, dangerous, and capable of making a franchise feel like it has arrived. Daniels remains listed as Washington’s quarterback, which makes this a clean young-QB comparison for national television.",
+      "Jayden Daniels gives the Titans a clear quarterback measuring stick. He is the kind of young quarterback Tennessee wants Ward to become: dynamic, dangerous, and capable of making a franchise feel like it has arrived. Daniels, if healthy, will make a clean young-QB comparison for national television.",
       "For Ward, this game would not just be about winning. It would be about showing growth.",
       "Can he command the offense? Can he answer another explosive quarterback? Can he look like the kind of player Tennessee can build around for the next decade?",
       "That is why this matchup works so well at home. Nashville gets the stage. The Titans get a young, exciting opponent. And Ward gets a chance to show that his development is not just something Titans fans are talking themselves into.",
@@ -754,7 +754,7 @@ export default function App() {
                 style={{
                   ...styles.aboutCard,
                   padding: isMobile ? "22px" : "26px",
-                  borderWidth: isMobile ? "4px" : "4px",
+                  borderWidth: "4px",
                 }}
               >
                 <h3 style={styles.aboutCardTitle}>Who I Am</h3>
@@ -800,7 +800,7 @@ export default function App() {
                 style={{
                   ...styles.aboutCard,
                   padding: isMobile ? "22px" : "26px",
-                  borderWidth: isMobile ? "4px" : "4px",
+                  borderWidth: "4px",
                 }}
               >
                 <h3 style={styles.aboutCardTitle}>Why I Do This</h3>
