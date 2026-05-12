@@ -414,8 +414,7 @@ export default function App() {
               </p>
               <p style={{ fontWeight: 900 }}>Primary Focus</p>
               <p>Tennessee Titans + NFL</p>
-              <p style={{ fontWeight: 900 }}>Voice</p>
-              <p>Sports media, conversational, opinionated</p>
+          
             </aside>
           </section>
 
