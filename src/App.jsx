@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const colors = {
   navy: "#0C2340",
@@ -86,97 +86,83 @@ const styles = {
     color: colors.black,
     fontFamily: "Arial, Helvetica, sans-serif",
   },
+
   header: {
     position: "sticky",
     top: 0,
     zIndex: 10,
     background: colors.white,
     borderBottom: `5px solid ${colors.red}`,
-    padding: "18px 24px",
+    padding: "10px 24px",
+    boxShadow: "0 8px 22px rgba(0,0,0,0.08)",
   },
+
   container: {
     maxWidth: "1180px",
     margin: "0 auto",
   },
+
   headerInner: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    gap: "20px",
+    gap: "24px",
     flexWrap: "wrap",
   },
-  brand: {
-    display: "flex",
-    alignItems: "center",
-    gap: "14px",
-  },
-  brandMark: {
-    width: "56px",
-    height: "56px",
-    borderRadius: "16px",
-    background: colors.blue,
-    border: `4px solid ${colors.red}`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontWeight: 900,
-    fontSize: "20px",
-    color: colors.black,
-    boxShadow: `inset 0 0 0 3px ${colors.white}`,
-  },
-brandLink: {
-  display: "flex",
-  alignItems: "center",
-  color: colors.black,
-  textDecoration: "none",
-},
 
-logoImage: {
-  width: "260px",
-  maxWidth: "100%",
-  height: "auto",
-  objectFit: "contain",
-  display: "block",
-},
-  siteTitle: {
-    margin: 0,
-    fontSize: "24px",
-    fontWeight: 900,
-    color: colors.black,
-  },
-  siteSub: {
-    margin: 0,
-    fontSize: "12px",
-    fontWeight: 900,
-    letterSpacing: "3px",
-    color: colors.black,
-  },
-  nav: {
+  brandLink: {
     display: "flex",
-    gap: "22px",
-    fontWeight: 900,
-    flexWrap: "wrap",
-  },
-  navLink: {
+    alignItems: "center",
     color: colors.black,
     textDecoration: "none",
   },
-  main: {
-    padding: "36px 24px",
+
+  logoImage: {
+    width: "340px",
+    maxWidth: "100%",
+    height: "auto",
+    objectFit: "contain",
+    display: "block",
   },
+
+  nav: {
+    display: "flex",
+    gap: "12px",
+    fontWeight: 900,
+    flexWrap: "wrap",
+    alignItems: "center",
+  },
+
+  navLink: {
+    color: colors.black,
+    textDecoration: "none",
+    border: `3px solid ${colors.blue}`,
+    borderRadius: "999px",
+    padding: "10px 14px",
+    background: colors.white,
+    fontSize: "14px",
+  },
+
+  main: {
+    padding: "42px 24px 60px",
+  },
+
   heroGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gridTemplateColumns: "minmax(0, 1.1fr) minmax(280px, 0.9fr)",
     gap: "24px",
+    alignItems: "stretch",
   },
+
   hero: {
     border: `5px solid ${colors.navy}`,
     borderRadius: "24px",
-    padding: "36px",
+    padding: "40px",
     background: `linear-gradient(135deg, ${colors.white} 0%, #f3f9ff 55%, #e7f2ff 100%)`,
     color: colors.black,
     boxShadow: "0 18px 40px rgba(0,0,0,0.12)",
   },
+
   badge: {
     display: "inline-block",
     border: `3px solid ${colors.blue}`,
@@ -187,18 +173,21 @@ logoImage: {
     color: colors.black,
     background: colors.white,
   },
+
   h1: {
     margin: 0,
-    fontSize: "clamp(36px, 6vw, 52px)",
+    fontSize: "clamp(38px, 6vw, 58px)",
     lineHeight: 1,
     fontWeight: 900,
     color: colors.black,
   },
+
   dek: {
     fontSize: "20px",
     lineHeight: 1.6,
     color: colors.black,
   },
+
   meta: {
     display: "flex",
     flexWrap: "wrap",
@@ -207,6 +196,7 @@ logoImage: {
     color: colors.black,
     marginTop: "20px",
   },
+
   button: {
     marginTop: "26px",
     background: colors.blue,
@@ -218,85 +208,31 @@ logoImage: {
     cursor: "pointer",
     fontSize: "16px",
   },
+
   sideCard: {
     border: `5px solid ${colors.silver}`,
     borderRadius: "24px",
-    padding: "28px",
+    padding: "32px",
     background: colors.white,
     color: colors.black,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
-  sectionHeader: {
-    marginTop: "56px",
-    marginBottom: "20px",
-  },
+
   h2: {
     margin: 0,
     fontSize: "clamp(28px, 5vw, 36px)",
     fontWeight: 900,
     color: colors.black,
   },
-  searchRow: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: "18px",
-    alignItems: "center",
-    flexWrap: "wrap",
+
+  focusBox: {
+    marginTop: "18px",
+    borderLeft: `6px solid ${colors.red}`,
+    paddingLeft: "16px",
   },
-  input: {
-    border: `4px solid ${colors.blue}`,
-    borderRadius: "16px",
-    padding: "14px",
-    fontWeight: 800,
-    color: colors.black,
-    minWidth: "260px",
-  },
-  filters: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "10px",
-    margin: "20px 0 28px",
-  },
-  filterButton: {
-    background: colors.white,
-    color: colors.black,
-    border: `3px solid ${colors.blue}`,
-    borderRadius: "999px",
-    padding: "10px 16px",
-    fontWeight: 900,
-    cursor: "pointer",
-  },
-  activeFilter: {
-    background: colors.blue,
-    border: `3px solid ${colors.red}`,
-  },
-  cardGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-    gap: "24px",
-  },
-  card: {
-    border: `5px solid ${colors.silver}`,
-    borderRadius: "24px",
-    overflow: "hidden",
-    background: colors.white,
-    color: colors.black,
-  },
-  cardTop: {
-    height: "145px",
-    background: colors.blue,
-    borderBottom: `5px solid ${colors.red}`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "16px",
-    fontSize: "28px",
-    fontWeight: 900,
-    color: colors.black,
-  },
-  cardBody: {
-    padding: "24px",
-  },
+
   articleShell: {
     maxWidth: "850px",
     margin: "0 auto",
@@ -306,6 +242,7 @@ logoImage: {
     background: colors.white,
     color: colors.black,
   },
+
   footer: {
     borderTop: `5px solid ${colors.blue}`,
     padding: "28px",
@@ -333,6 +270,7 @@ function ArticlePage({ article, onBack }) {
       <header style={styles.header}>
         <div style={{ ...styles.container, ...styles.headerInner }}>
           <Brand />
+
           <button
             style={{
               ...styles.button,
@@ -387,6 +325,16 @@ function ArticlePage({ article, onBack }) {
               );
             })}
           </div>
+
+          <button
+            style={{
+              ...styles.button,
+              background: colors.white,
+            }}
+            onClick={onBack}
+          >
+            Back to Home
+          </button>
         </article>
       </main>
 
@@ -398,30 +346,16 @@ function ArticlePage({ article, onBack }) {
 }
 
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("All");
   const [activeArticle, setActiveArticle] = useState(null);
-
-  const categories = ["All", ...new Set(articles.map((article) => article.category))];
-
-  const filteredArticles = useMemo(() => {
-    return articles.filter((article) => {
-      const matchesCategory = category === "All" || article.category === category;
-      const matchesSearch = `${article.title} ${article.dek} ${article.category}`
-        .toLowerCase()
-        .includes(query.toLowerCase());
-
-      return matchesCategory && matchesSearch;
-    });
-  }, [query, category]);
-
   const featured = articles[0];
 
   useEffect(() => {
     const slugFromUrl = window.location.hash.replace("#", "");
 
     if (slugFromUrl) {
-      const matchedArticle = articles.find((article) => article.slug === slugFromUrl);
+      const matchedArticle = articles.find(
+        (article) => article.slug === slugFromUrl
+      );
 
       if (matchedArticle) {
         setActiveArticle(matchedArticle);
@@ -446,13 +380,16 @@ export default function App() {
       <header style={styles.header}>
         <div style={{ ...styles.container, ...styles.headerInner }}>
           <Brand />
+
           <nav style={styles.nav}>
-            <a style={styles.navLink} href="#latest">
-              Latest
+            <a style={styles.navLink} href="/">
+              Home
             </a>
+
             <a style={styles.navLink} href="#about">
               About
             </a>
+
             <a style={styles.navLink} href="mailto:youremail@example.com">
               Contact
             </a>
@@ -465,7 +402,9 @@ export default function App() {
           <section style={styles.heroGrid}>
             <div style={styles.hero}>
               <span style={styles.badge}>Featured Article</span>
+
               <h1 style={styles.h1}>{featured.title}</h1>
+
               <p style={styles.dek}>{featured.dek}</p>
 
               <div style={styles.meta}>
@@ -486,87 +425,22 @@ export default function App() {
             </div>
 
             <aside style={styles.sideCard} id="about">
-              <h2 style={{ ...styles.h2, fontSize: "30px" }}>
+              <h2 style={{ ...styles.h2, fontSize: "32px" }}>
                 The Home Crowd Rally Point
               </h2>
 
               <p style={{ fontSize: "18px", lineHeight: 1.7 }}>
-                A fan-first sports media home for Titans coverage, NFL storylines,
-                roster-building thoughts, and conversational analysis.
+                Titans-focused football coverage built around storylines,
+                rebuild talk, roster direction, and fan-first analysis.
               </p>
 
-              <p style={{ fontWeight: 900 }}>Primary Focus</p>
-              <p>Tennessee Titans + NFL</p>
-            </aside>
-          </section>
-
-          <section id="latest" style={styles.sectionHeader}>
-            <div style={styles.searchRow}>
-              <div>
-                <p style={{ fontWeight: 900 }}>LATEST ARTICLES</p>
-                <h2 style={styles.h2}>
-                  Read the latest from The Home Crowd Rally Point
-                </h2>
+              <div style={styles.focusBox}>
+                <p style={{ fontWeight: 900, marginBottom: "6px" }}>
+                  Primary Focus
+                </p>
+                <p style={{ marginTop: 0 }}>Tennessee Titans + NFL</p>
               </div>
-
-              <input
-                style={styles.input}
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search articles..."
-              />
-            </div>
-
-            <div style={styles.filters}>
-              {categories.map((item) => (
-                <button
-                  key={item}
-                  style={{
-                    ...styles.filterButton,
-                    ...(category === item ? styles.activeFilter : {}),
-                  }}
-                  onClick={() => setCategory(item)}
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-
-            <div style={styles.cardGrid}>
-              {filteredArticles.map((article) => (
-                <article key={article.id} style={styles.card}>
-                  <div style={styles.cardTop}>{article.imageLabel}</div>
-
-                  <div style={styles.cardBody}>
-                    <p style={{ fontWeight: 900 }}>
-                      {article.category} · {article.readTime}
-                    </p>
-
-                    <h3
-                      style={{
-                        fontSize: "26px",
-                        fontWeight: 900,
-                        color: colors.black,
-                      }}
-                    >
-                      {article.title}
-                    </h3>
-
-                    <p style={{ lineHeight: 1.7 }}>{article.dek}</p>
-
-                    <button
-                      style={styles.button}
-                      onClick={() => {
-                        window.location.hash = article.slug;
-                        setActiveArticle(article);
-                      }}
-                    >
-                      Read More
-                    </button>
-                  </div>
-                </article>
-              ))}
-            </div>
+            </aside>
           </section>
         </div>
       </main>
