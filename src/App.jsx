@@ -700,9 +700,8 @@ function HomePage({ isMobile, openArticle, setPage }) {
                   lineHeight: 1.7,
                 }}
               >
-                The Home Crowd Rally Point is a fan-first football site focused
-                on Titans stories, rebuild talk, NFL storylines, and
-                conversations that matter to Tennessee fans.
+                The Home Crowd Rally Point is built for Titans fans who want
+                real football stories and fan-first conversation.
               </p>
 
               <div style={styles.focusRow}>
@@ -712,7 +711,7 @@ function HomePage({ isMobile, openArticle, setPage }) {
               </div>
 
               <p style={styles.smallNote}>
-                Titans stories. Rebuild talk. Fan-first football conversation.
+                Titans stories. Real conversation. Fan-first coverage.
               </p>
             </div>
           </aside>
@@ -727,7 +726,9 @@ function HomePage({ isMobile, openArticle, setPage }) {
         >
           <span style={styles.eyebrow}>Latest Articles</span>
 
-          <h2 style={styles.h2}>Read the latest from The Home Crowd Rally Point</h2>
+          <h2 style={styles.h2}>
+            Read the latest from The Home Crowd Rally Point
+          </h2>
 
           <div
             style={{
@@ -791,8 +792,7 @@ function ArticlesPage({ isMobile, openArticle }) {
           </h1>
 
           <p style={{ ...styles.dek, fontSize: isMobile ? "18px" : "20px" }}>
-            Titans stories, rebuild talk, NFL storylines, and fan-first football
-            conversation.
+            Titans stories. Real conversation. Fan-first coverage.
           </p>
 
           <div
