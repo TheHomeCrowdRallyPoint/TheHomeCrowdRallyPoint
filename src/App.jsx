@@ -578,7 +578,7 @@ function XFeedCard({ isMobile }) {
           className="twitter-timeline"
           data-height={isMobile ? "500" : "620"}
           data-theme="light"
-          href="https://twitter.com/HCRallyPoint?ref_src=twsrc%5Etfw"
+          href="https://x.com/HCRallyPoint?ref_src=twsrc%5Etfw"
         >
           Tweets by HCRallyPoint
         </a>
