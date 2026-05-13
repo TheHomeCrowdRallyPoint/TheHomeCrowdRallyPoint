@@ -13,6 +13,8 @@ const colors = {
 const contactEmail = "ForwardProgressHQ@gmail.com";
 const twitterHandle = "@HCRallyPoint";
 const twitterUrl = "https://x.com/HCRallyPoint";
+const redditHandle = "u/TheHomeCrowdRP";
+const redditUrl = "https://www.reddit.com/user/TheHomeCrowdRP";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(() => {
@@ -186,15 +188,6 @@ const styles = {
     boxShadow: "0 14px 34px rgba(0,0,0,0.07)",
   },
 
-  xFeedFrame: {
-    marginTop: "18px",
-    border: `4px solid ${colors.silver}`,
-    borderRadius: "18px",
-    padding: "10px",
-    background: "#f8fbff",
-    overflow: "hidden",
-  },
-
   eyebrow: {
     display: "inline-block",
     fontSize: "13px",
@@ -221,6 +214,41 @@ const styles = {
     fontWeight: 900,
     background: colors.white,
     color: colors.black,
+  },
+
+  socialBox: {
+    marginTop: "22px",
+    border: `4px solid ${colors.silver}`,
+    borderRadius: "20px",
+    padding: "20px",
+    background: colors.white,
+  },
+
+  socialHandle: {
+    fontSize: "18px",
+    fontWeight: 900,
+    lineHeight: 1.6,
+    color: colors.black,
+    margin: "0 0 8px",
+  },
+
+  socialButtonRow: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "12px",
+    marginTop: "20px",
+  },
+
+  socialButton: {
+    display: "inline-block",
+    background: colors.blue,
+    color: colors.black,
+    border: `3px solid ${colors.red}`,
+    borderRadius: "16px",
+    padding: "12px 16px",
+    fontWeight: 900,
+    fontSize: "15px",
+    textDecoration: "none",
   },
 
   smallNote: {
@@ -392,6 +420,15 @@ function Footer() {
       >
         {twitterHandle}
       </a>
+      {" · "}
+      <a
+        href={redditUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={styles.footerLink}
+      >
+        {redditHandle}
+      </a>
     </footer>
   );
 }
@@ -475,6 +512,15 @@ function Header({ isMobile, setPage, setActiveArticle }) {
           >
             {twitterHandle}
           </a>
+
+          <a
+            style={styles.navButton}
+            href={redditUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Reddit
+          </a>
         </nav>
       </div>
     </header>
@@ -516,72 +562,74 @@ function ArticleCard({ article, isMobile, openArticle }) {
   );
 }
 
-function XFeedCard({ isMobile }) {
-  useEffect(() => {
-    function loadXWidget() {
-      if (
-        typeof window !== "undefined" &&
-        window.twttr &&
-        window.twttr.widgets
-      ) {
-        window.twttr.widgets.load();
-      }
-    }
-
-    loadXWidget();
-
-    const timer = setTimeout(() => {
-      loadXWidget();
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+function SocialCard({ isMobile }) {
   return (
     <aside
       style={{
         ...styles.sideCard,
-        padding: isMobile ? "18px" : "24px",
-        minHeight: isMobile ? "auto" : "520px",
+        padding: isMobile ? "24px" : "32px",
+        minHeight: isMobile ? "auto" : "420px",
         borderWidth: isMobile ? "4px" : "5px",
-        justifyContent: "flex-start",
+        justifyContent: "center",
       }}
     >
-      <span style={styles.eyebrow}>Live from X</span>
+      <span style={styles.eyebrow}>Join the Conversation</span>
 
       <h2
         style={{
           ...styles.h2,
-          fontSize: isMobile ? "28px" : "32px",
+          fontSize: isMobile ? "30px" : "34px",
         }}
       >
-        @HCRallyPoint
+        Follow The Home Crowd Rally Point
       </h2>
 
       <p
         style={{
-          fontSize: isMobile ? "16px" : "17px",
-          lineHeight: 1.6,
+          fontSize: isMobile ? "17px" : "18px",
+          lineHeight: 1.7,
           fontWeight: 700,
         }}
       >
         Titans stories. Real conversation. Fan-first coverage.
       </p>
 
-      <div
-        style={{
-          ...styles.xFeedFrame,
-          padding: isMobile ? "8px" : "10px",
-        }}
-      >
-        <a
-          className="twitter-timeline"
-          data-height={isMobile ? "500" : "620"}
-          data-theme="light"
-          href="https://x.com/HCRallyPoint?ref_src=twsrc%5Etfw"
+      <div style={styles.socialBox}>
+        <p style={styles.socialHandle}>{twitterHandle} on X</p>
+        <p style={styles.socialHandle}>{redditHandle} on Reddit</p>
+
+        <p
+          style={{
+            fontSize: isMobile ? "16px" : "17px",
+            lineHeight: 1.7,
+            marginTop: "14px",
+          }}
         >
-          Tweets by HCRallyPoint
-        </a>
+          Follow for article drops, game thoughts, and Titans conversation.
+        </p>
+
+        <div style={styles.socialButtonRow}>
+          <a
+            href={twitterUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.socialButton}
+          >
+            Follow on X
+          </a>
+
+          <a
+            href={redditUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              ...styles.socialButton,
+              background: colors.white,
+            }}
+          >
+            Follow on Reddit
+          </a>
+        </div>
       </div>
     </aside>
   );
@@ -790,7 +838,7 @@ function HomePage({ isMobile, openArticle, setPage }) {
             </button>
           </div>
 
-          <XFeedCard isMobile={isMobile} />
+          <SocialCard isMobile={isMobile} />
         </section>
 
         <section
